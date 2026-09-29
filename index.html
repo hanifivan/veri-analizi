@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>İstatistik 1. Bölüm</title>
+<meta name="author" content="Doç. Dr. M. Hanifi VAN">
+<meta name="description" content="Veri Analizi dersi, İstatistik 1. Bölüm: Temel Kavramlar ve Verinin Düzenlenmesi. Etkileşimli ders notu. Hazırlayan: Doç. Dr. M. Hanifi VAN.">
 <script>/*!
  * Chart.js v4.5.1
  * https://www.chartjs.org
@@ -163,6 +165,19 @@
     .hero h1 { font-size: 26px; }
   }
 
+  .hero .yazar { font-size: 17px; font-weight: 700; color: #fff; margin: -.5rem 0 1.4rem; }
+  .hero .yazar span { display: block; font-size: 13px; font-weight: 400; color: #a8c8d8; margin-top: 2px; }
+  .indir { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 1.2rem; }
+  .indir a { color: #fff; text-decoration: none; font-size: 13px; font-weight: 600; padding: 7px 16px; border: 1.5px solid #4a6aa8; border-radius: 8px; }
+  .indir a:hover { background: #243460; border-color: var(--mint); }
+  footer.alt { max-width: 900px; margin: 0 auto 2rem; text-align: center; font-size: 12.5px; color: var(--gray); line-height: 1.9; border-top: 1px solid var(--border); padding-top: 1.2rem; }
+  footer.alt a { color: var(--teal); }
+  body.sunum footer.alt { display: none; }
+  body.sunum .hero .yazar { font-size: 24px; }
+  body.sunum .hero .yazar span { font-size: 17px; }
+  body.sunum .hero .indir { display: none; }
+  @media(max-width:700px) { .sb-yazar { display: none; } }
+
   /* SUNUM MODU */
   #sunum-ac { position: fixed; top: 14px; right: 18px; z-index: 200; background: var(--teal); color: #fff; border: none; font-weight: 700; font-size: 13px; padding: 8px 16px; border-radius: 20px; box-shadow: 0 2px 10px rgba(0,0,0,.2); }
   #sunum-ac:hover { background: var(--navy); }
@@ -207,7 +222,7 @@
 <body>
 
 <nav id="sidebar">
-  <div class="logo">İstatistik · 1. Bölüm</div>
+  <div class="logo">İstatistik · 1. Bölüm<div style="font-size:11px;font-weight:400;opacity:.85;margin-top:3px">Doç. Dr. M. Hanifi VAN</div></div>
   <div class="section-label">1. Araştırma ve Veri</div>
   <a href="#s1">1. Bir araştırma sorusu</a>
   <a href="#s2">2. İstatistik ve araştırma adımları</a>
@@ -235,6 +250,7 @@
   <div class="ilerleme" id="sb-ilerleme"></div>
   <button id="sb-geri" title="Önceki (sol ok, PageUp)">‹</button>
   <div class="bilgi" id="sb-bilgi"></div>
+  <span style="font-size:11px;color:#6f86a8;white-space:nowrap" class="sb-yazar">Doç. Dr. M. Hanifi VAN</span>
   <button id="sb-ileri" title="Sonraki (sağ ok, PageDown)">›</button>
   <button id="sb-tam" title="Tam ekran (F)">⛶</button>
   <button id="sb-cik" title="Sunumdan çık (Esc)">✕</button>
@@ -245,12 +261,18 @@
 <header class="hero">
   <h1>İstatistik</h1>
   <p>1. Bölüm: Temel Kavramlar ve Verinin Düzenlenmesi.<br>Bütün kavramlar 50 öğrencilik tek bir veri seti üzerinden anlatılıyor.</p>
+  <div class="yazar">Doç. Dr. M. Hanifi VAN<span>Van Yüzüncü Yıl Üniversitesi, İİBF Ekonometri Bölümü</span></div>
   <div class="badges">
     <a class="badge" style="background:#028090" href="#s1">Araştırma ve Veri</a>
     <a class="badge" style="background:#1D9E75" href="#s3">Anakütle ve Örnek</a>
     <a class="badge" style="background:#EF9F27" href="#s6">Değişken ve Ölçme</a>
     <a class="badge" style="background:#378ADD" href="#s9">Verinin Düzenlenmesi</a>
     <a class="badge" style="background:#7F77DD" href="#s14">Yapay Zeka</a>
+  </div>
+  <div class="indir">
+    <a href="veri_analizi_1_bolum.pdf" download>⤓ Sunum (PDF)</a>
+    <a href="veri_analizi_1_bolum.pptx" download>⤓ Sunum (PowerPoint)</a>
+    <a href="ornek_veri_50_ogrenci.xlsx" download>⤓ Örnek veri (Excel)</a>
   </div>
 </header>
 
@@ -632,6 +654,11 @@
   </div>
 </section>
 
+<footer class="alt">
+  <b>Hazırlayan: Doç. Dr. M. Hanifi VAN</b><br>
+  Van Yüzüncü Yıl Üniversitesi, İİBF Ekonometri Bölümü · Veri Analizi dersi, 1. Bölüm · © 2026<br>
+  <a href="veri_analizi_1_bolum.pdf" download>Sunum (PDF)</a> · <a href="veri_analizi_1_bolum.pptx" download>Sunum (PowerPoint)</a> · <a href="ornek_veri_50_ogrenci.xlsx" download>Örnek veri (Excel)</a>
+</footer>
 </main>
 
 <script>
