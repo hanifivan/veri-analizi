@@ -185,7 +185,75 @@
   @media(max-width:700px) { .fa-yan { grid-template-columns: minmax(0, 1fr); } .fa-yan #fa-tablo td, .fa-yan #fa-tablo th { white-space: normal; padding: 4px 5px; } #fa-tablo-wrap { overflow-x: auto; } .fa-yan #fa-tablo td:first-child { white-space: nowrap; } #sunum-ac { display: none; } }
   body.sunum #s11 .fa-yan .fa-ham div { padding: 3px 2px; }
   body.sunum #s11 #fa-tablo { font-size: 14px; }
+  .fa-gez { justify-content: flex-start; gap: 8px; align-items: center; }
+  /* 1100 px altında (sunum hariç) iki sütun alt alta: sağ sütun (soru, tablo) öne, ham ızgara 10 sütun */
+  @media(max-width:1100px) { body:not(.sunum) #fa-kap .fa-yan { grid-template-columns: minmax(0, 1fr); } body:not(.sunum) #fa-kap .fa-yan > div:last-child { order: -1; }
+    body:not(.sunum) #fa-kap .fa-yan .fa-ham { grid-template-columns: repeat(10, 1fr); } }
+  @media(max-width:700px) { body:not(.sunum) #fa-kap .fa-yan .fa-ham { grid-template-columns: repeat(5, 1fr); } #fa-tablo { font-size: 11px; } .fa-yan #fa-tablo td, .fa-yan #fa-tablo th { padding: 3px 3px; } }
+  .ad-giris input.uy { border-color: var(--orange); background: #FFF6E8; }
+  .ad-gb.uy { background: #FFF6E8; color: #7a4d00; }
+  #fa-kap .ad-giris label { white-space: normal; }
+  body.sunum #s11 #fa-acik { font-size: 15px; line-height: 1.55; padding: .5rem .8rem; }
+  body.sunum #s11 #fa-kap .ad-giris, body.sunum #s11 #fa-kap .ad-gb { font-size: 15px; }
+  body.sunum #s11 .fa-yan { margin-top: .2rem; }
   body.sunum #s11 .info-box { font-size: 15px; line-height: 1.6; padding: .6rem .9rem; }
+
+  /* ADIM KALIBI (ortak; 2. bölüm de kullanır). Kap: .ad-kutu[data-adimli]; renkler hücrede ve metinde --r ile verilir.
+     Pano: .ad-hucre[data-anahtar][data-adim] (data-sor: öğrenci bulur), içinde span (ad), b (değer), i ("n. adım"). */
+  .ad-kutu { border: 1.5px solid var(--border); border-radius: 10px; padding: .8rem 1rem; background: #fff; margin-top: .6rem; }
+  .ad-pano { display: grid; grid-template-columns: repeat(auto-fit, minmax(108px, 1fr)); gap: .45rem; margin: .4rem 0 .7rem; }
+  .ad-hucre { --r: var(--navy); border: 2px dashed #cfd8e3; border-radius: 10px; padding: .3rem .4rem; text-align: center; background: #fafbfc; transition: border-color .4s, background .4s; min-width: 0; }
+  .ad-hucre span { display: block; font-size: 12px; color: var(--gray); line-height: 1.35; }
+  .ad-hucre b { display: block; font-size: 20px; color: #b8c2cf; font-family: "SF Mono", Menlo, Consolas, monospace; line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ad-hucre i { display: block; font-size: 11px; color: #b8c2cf; font-style: normal; }
+  .ad-hucre.dolu { border-style: solid; border-color: var(--r); background: #fff; }
+  .ad-hucre.dolu b { color: var(--r); }
+  .ad-hucre.dolu i { visibility: hidden; }
+  .ad-hucre.yanip { animation: adYan 1.2s ease; }
+  @keyframes adYan { 0% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(239,159,39,.35); } 100% { transform: none; box-shadow: none; } }
+  .ad-r { color: var(--r); font-weight: 700; }
+  .ad-adimlar { display: flex; gap: .3rem; flex-wrap: wrap; margin-bottom: .5rem; }
+  .ad-adimlar button { font-size: 12.5px; padding: 4px 10px; border-radius: 16px; }
+  .ad-adimlar button.gecti { background: #E6F7F0; border-color: var(--green); color: #0d5c43; }
+  .ad-adimlar button.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .ad-adim { display: none; }
+  .ad-adim.on { display: block; animation: adBelir .35s ease; }
+  @keyframes adBelir { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .ad-adim h5 { margin: .2rem 0 .4rem; font-size: 15px; color: var(--navy); }
+  .ad-yaz { background: #F3F7FB; border-radius: 8px; padding: .5rem .8rem; margin-top: .5rem; line-height: 1.7; }
+  .ad-f { font-size: 18px; text-align: center; line-height: 2.1; margin: .5rem 0; overflow-x: auto; overflow-y: hidden; }
+  .ad-frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 .15em; line-height: 1.25; }
+  .ad-frac > span:first-child { border-bottom: 1.5px solid currentColor; padding: 0 .3em .05em; }
+  .ad-frac > span:last-child { padding: .05em .3em 0; }
+  .ad-giris { background: #F7F5FF; border: 1px solid #d9d4f7; border-radius: 8px; padding: .5rem .8rem; margin-top: .5rem; }
+  .ad-giris label { margin-right: .8rem; white-space: nowrap; display: inline-block; }
+  .ad-giris input { width: 4.6em; font-size: inherit; padding: 2px 6px; border: 1.5px solid #b9b2ee; border-radius: 6px; text-align: right; font-family: inherit; }
+  .ad-giris input.ok { border-color: var(--green); background: #E6F7F0; }
+  .ad-giris input.no { border-color: var(--red); background: #FDECEC; }
+  .ad-giris button { margin: .3rem .3rem 0 0; }
+  .ad-gb:empty { display: none; }
+  .ad-gb { margin-top: .45rem; padding: .45rem .8rem; border-radius: 6px; line-height: 1.6; }
+  .ad-gb.ok { background: #E6F7F0; color: #0d5c43; }
+  .ad-gb.no { background: #FDECEC; color: #8a2020; }
+  .ad-sec.ok { background: #E6F7F0; border-color: var(--green); color: #0d5c43; font-weight: 700; }
+  .ad-sec.no { background: #FDECEC; border-color: var(--red); color: #8a2020; }
+  .ad-gez { display: flex; justify-content: space-between; margin-top: .6rem; }
+  .ad-grafik { position: relative; margin-top: .5rem; }
+  .ad-grafik svg { display: block; width: 100%; height: auto; max-height: 300px; }
+  @media(max-width:700px) { .ad-kutu { padding: .6rem; } .ad-pano { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .3rem; } .ad-hucre { padding: .25rem .2rem; } .ad-hucre span { font-size: 10.5px; } .ad-hucre b { font-size: 16px; } .ad-f { font-size: 15px; } }
+  body.sunum .ad-kutu { border: none; padding: 0; margin-top: 0; }
+  body.sunum .ad-pano { margin: .1rem 0 .35rem; }
+  body.sunum .ad-hucre { padding: .15rem .4rem; }
+  body.sunum .ad-hucre span { font-size: 15px; } body.sunum .ad-hucre b { font-size: 25px; } body.sunum .ad-hucre i { display: none; }
+  body.sunum .ad-adimlar { margin-bottom: .3rem; }
+  body.sunum .ad-adimlar button { font-size: 16px; padding: 3px 12px; }
+  body.sunum .ad-adim h5 { font-size: 22px; margin-bottom: .25rem; }
+  body.sunum .ad-yaz { font-size: 19px; padding: .35rem .7rem; margin-top: .35rem; line-height: 1.55; }
+  body.sunum .ad-giris, body.sunum .ad-gb { font-size: 18px; }
+  body.sunum .ad-f { font-size: 26px; line-height: 1.9; margin: .3rem 0; }
+  body.sunum .ad-grafik svg { max-height: 280px; }
+  /* sunumda adımlar ok tuşu/kumandayla gezilir: düğmeler gizli */
+  body.sunum .ad-gez { display: none; }
 
   /* SUNUM MODU */
   #sunum-ac { position: fixed; top: 14px; right: 18px; z-index: 200; background: var(--teal); color: #fff; border: none; font-weight: 700; font-size: 13px; padding: 8px 16px; border-radius: 20px; box-shadow: 0 2px 10px rgba(0,0,0,.2); }
@@ -223,6 +291,7 @@
   body.sunum .stem { font-size: 22px; }
   body.sunum .rawgrid { font-size: 15px; }
   body.sunum .gizli-p { display: none !important; }
+  body.sunum .ilk-p { margin-top: 0 !important; }
   body.sunum #s3 .chart-wrap, body.sunum #s9 .chart-wrap { height: min(360px, 34vh); }
   .parca-no { margin-left: auto; font-size: .75em; color: #a8c8d8; font-weight: 600; }
   @media print { #sunum-ac, #sunum-bar { display: none !important; } }
@@ -555,15 +624,35 @@
   <div class="section-header"><span class="num">11</span>Sınıflanmış Seri: Ağırlık Verileri</div>
   <div class="section-body">
     <p>Veriler sürekli bir şans değişkenine aitse her veri belirli kurallara göre oluşturulan bir sınıfa kaydedilir; buna sınıflanmış seri denir (örneğin 55 ≤ x &lt; 65, 65 ≤ x &lt; 75 gibi). Aşağıda 50 erkek öğrencinin ağırlıkları (kg) var. Frekans tablosunu adım adım kuralım.</p>
+    <div class="ad-kutu" data-adimli id="fa-kap">
+    <div class="ad-pano">
+      <div class="ad-hucre" data-anahtar="min" data-adim="1" style="--r:#378ADD"><span>En küçük değer</span><b>?</b><i>1. adım</i></div>
+      <div class="ad-hucre" data-anahtar="max" data-adim="1" style="--r:#378ADD"><span>En büyük değer</span><b>?</b><i>1. adım</i></div>
+      <div class="ad-hucre" data-anahtar="R" data-adim="1" data-sor style="--r:#C2185B"><span>Değişim aralığı R</span><b>?</b><i>1. adım</i></div>
+      <div class="ad-hucre" data-anahtar="k" data-adim="2" data-sor style="--r:#7F77DD"><span>Sınıf sayısı k</span><b>?</b><i>2. adım</i></div>
+      <div class="ad-hucre" data-anahtar="i" data-adim="3" data-sor style="--r:#8B5E3C"><span>Sınıf genişliği i</span><b>?</b><i>3. adım</i></div>
+      <div class="ad-hucre" data-anahtar="L0" data-adim="4" data-sor style="--r:#028090"><span>İlk alt sınır</span><b>?</b><i>4. adım</i></div>
+      <div class="ad-hucre" data-anahtar="m1" data-adim="5" data-sor style="--r:#1D9E75"><span>İlk orta nokta</span><b>?</b><i>5. adım</i></div>
+    </div>
+    <div class="ad-adimlar"></div>
     <div class="fa-yan">
       <div><div class="rawgrid fa-ham" id="agirlik-grid"></div></div>
       <div>
-        <div class="controls" style="margin-top:0">
-          <button id="fa-geri">‹ Geri</button><button id="fa-ileri">İleri ›</button>
-          <span id="fa-adim" style="font-size:13px;color:var(--gray)"></span>
+        <div class="controls ad-gez fa-gez" style="margin-top:0">
+          <button id="fa-geri" class="ad-geri">‹ Geri</button><button id="fa-ileri" class="ad-ileri">İleri ›</button>
         </div>
-        <div class="dots" id="fa-dots" style="margin-top:0"></div>
-        <div class="info-box" id="fa-acik" style="margin-top:.6rem"></div>
+        <div class="info-box" id="fa-acik" style="margin-top:.4rem"></div>
+        <div class="ad-adim" data-adim="1"><div class="ad-giris" id="fa-s1"><label>R = en büyük − en küçük = <input data-alan="R" inputmode="decimal"></label>
+          <button class="ad-kontrol">Kontrol et</button><button class="ad-goster">Cevabı göster</button><div class="ad-gb"></div></div></div>
+        <div class="ad-adim" data-adim="2"><div class="ad-giris" id="fa-s2"><label>k = <input data-alan="k" inputmode="decimal"></label>
+          <button class="ad-kontrol">Kontrol et</button><button class="ad-goster">Cevabı göster</button><div class="ad-gb"></div></div></div>
+        <div class="ad-adim" data-adim="3"><div class="ad-giris" id="fa-s3"><label>i = <input data-alan="i" inputmode="decimal"> kg</label>
+          <button class="ad-kontrol">Kontrol et</button><button class="ad-goster">Cevabı göster</button><div class="ad-gb"></div></div></div>
+        <div class="ad-adim" data-adim="4"><div class="ad-giris" id="fa-s4"><label>İlk sınıfın alt sınırı = <input data-alan="L0" inputmode="decimal"></label>
+          <button class="ad-kontrol">Kontrol et</button><button class="ad-goster">Cevabı göster</button><div class="ad-gb"></div></div>
+          <div class="ad-giris" id="fa-s4b">Ağırlığı tam 64,00 kg ölçülen öğrenci hangi sınıfa yazılır? <button class="ad-sec" data-sec="57">57-64'ten az</button><button class="ad-sec" data-sec="64">64-71'den az</button><div class="ad-gb" id="fa-s4b-gb"></div></div></div>
+        <div class="ad-adim" data-adim="5"><div class="ad-giris" id="fa-s5"><label>50-57 sınıfının orta noktası = <input data-alan="m1" inputmode="decimal"></label>
+          <button class="ad-kontrol">Kontrol et</button><button class="ad-goster">Cevabı göster</button><div class="ad-gb"></div></div></div>
         <div id="fa-tablo-wrap" data-olc style="margin-top:.8rem">
           <div class="controls" style="margin:0 0 .5rem"><button id="fa-say">Sayımı oynat</button><button id="fa-hizli">Hepsini say</button>
             <label style="margin-left:.4rem"><input type="checkbox" id="fa-rel" checked> Relatif</label>
@@ -571,6 +660,7 @@
           <table id="fa-tablo"></table>
         </div>
       </div>
+    </div>
     </div>
     <h4 style="margin:1.4rem 0 .3rem;color:var(--navy)">Sınıflanmış seri grafiği</h4>
     <div class="controls"><button id="hp-h" class="active">Histogram</button><button id="hp-p">Frekans poligonu</button><button id="hp-hp">İkisi birlikte</button></div>
@@ -952,11 +1042,21 @@ const FA = [
   ['Gözlemlerin sayılması, sınıflara işlenmesi', 'Her ağırlık değeri kendi sınıfına işlenir. “Sayımı oynat” ile tek tek izleyin ya da “Hepsini say” ile tamamlayın. Sonra relatif ve kümülatif sütunları açıp kapatın.'],
 ];
 let fa = 0, sayilan = 0, sayTimer = null;
-FA.forEach((_, i) => $('fa-dots').insertAdjacentHTML('beforeend', `<div class="dot" data-i="${i}" title="${FA[i][0]}"></div>`));
-$('fa-dots').querySelectorAll('.dot').forEach(d => d.onclick = () => { fa = +d.dataset.i; faCiz(); });
+// Adım kalıbı: fa adımları ortak motorun (adimKur) adımlarıdır. Her adımda önce soru sorulur; öğrenci bulunca
+// ya da sonraki adıma geçilince yukarıdaki FA açıklaması görünür. Tablo ve orta noktalar da cevabı vermesin diye o zaman açılır.
+let FAK = null;
+const FA_SORU = [
+  `En küçük değer <b>${tr(AMIN, 2)}</b>, en büyük değer <b>${tr(AMAX, 2)}</b> (mavi). Değişim aralığı R = en büyük − en küçük. Önce siz bulun.`,
+  'Sınıf sayısı genelde 5 ile 15 arasında seçilir. Sturges kuralı: k ≈ 1 + 3,322 · log₁₀(n); n = 50 için log₁₀(50) ≈ 1,699. k kaç olur (tam sayı)?',
+  'Sınıf genişliği ≈ aralık / sınıf sayısı = R / k. Kolay okunsun ve bütün değerler sınıflara sığsın diye yuvarlanır. Kaç kg?',
+  'Sınıflar en küçük değeri içine alan yuvarlak bir sayıdan başlar; alt sınır dahil, üst sınır hariçtir. İlk alt sınır kaç?',
+  'Orta nokta = (alt sınır + üst sınır) / 2. İlk sınıfın (50-57) orta noktası kaç?',
+  null];
+const FA_ANAHTAR = [['R'], ['k'], ['i'], ['L0', 'sinir'], ['m1'], []];
+const faCozuldu = i => !!FAK && (FAK.a > i + 1 || FA_ANAHTAR[i].every(k => FAK.acik.has(k)));
 function faTablo() {
   const f = Array(7).fill(0); AGIRLIK.slice(0, sayilan).forEach(v => f[sinifOf(v)]++);
-  const rel = $('fa-rel').checked, kum = $('fa-kum').checked, orta = fa >= 4, bitti = sayilan === 50;
+  const rel = $('fa-rel').checked, kum = $('fa-kum').checked, orta = fa >= 5 || (fa === 4 && faCozuldu(4)), bitti = sayilan === 50;
   let h = '<tr><th>Sınıf</th>' + (orta ? '<th>Orta nokta</th>' : '') + '<th>Frekans</th>' + (rel ? '<th>Relatif frekans</th>' : '') + (kum ? '<th>Küm. relatif frekans</th>' : '') + '</tr>';
   let k = 0; const cur = sayilan > 0 && sayilan < 50 ? sinifOf(AGIRLIK[sayilan - 1]) : -1;
   for (let j = 0; j < 7; j++) {
@@ -969,16 +1069,11 @@ function faTablo() {
   agCells.forEach((c, i) => { c.className = ''; if (fa === 0 && (AGIRLIK[i] === AMIN || AGIRLIK[i] === AMAX)) c.className = 'ext'; else if (fa >= 5 && i < sayilan) c.className = (i === sayilan - 1 && !bitti) ? 'cur' : 'done'; });
 }
 function faCiz() {
-  $('fa-adim').textContent = `Adım ${fa + 1} / 6: ${FA[fa][0]}`;
-  $('fa-acik').innerHTML = `<strong>${fa + 1}. ${FA[fa][0]}.</strong> ${FA[fa][1]}`;
-  $('fa-dots').querySelectorAll('.dot').forEach((d, i) => d.classList.toggle('active', i <= fa));
-  $('fa-geri').disabled = fa === 0; $('fa-ileri').disabled = fa === 5;
-  $('fa-tablo-wrap').style.display = fa >= 3 ? '' : 'none';
+  $('fa-acik').innerHTML = `<strong>${fa + 1}. ${FA[fa][0]}.</strong> ${FA_SORU[fa] && !faCozuldu(fa) ? FA_SORU[fa] : FA[fa][1]}`;
+  $('fa-tablo-wrap').style.display = fa >= 4 || (fa === 3 && faCozuldu(3)) ? '' : 'none';
   $('fa-say').disabled = $('fa-hizli').disabled = fa < 5;
   faTablo();
 }
-$('fa-ileri').onclick = () => { fa = Math.min(5, fa + 1); faCiz(); };
-$('fa-geri').onclick = () => { fa = Math.max(0, fa - 1); faCiz(); };
 $('fa-say').onclick = () => {
   clearInterval(sayTimer); if (sayilan >= 50) sayilan = 0;
   sayTimer = setInterval(() => { sayilan++; faTablo(); if (sayilan >= 50) clearInterval(sayTimer); }, 250);
@@ -986,6 +1081,49 @@ $('fa-say').onclick = () => {
 $('fa-hizli').onclick = () => { clearInterval(sayTimer); sayilan = 50; faTablo(); };
 $('fa-rel').onchange = $('fa-kum').onchange = faTablo;
 faCiz();
+{ // 11. bölümün adım kalıbı (ortak motor sunum kodunun ardında; bildirim olduğu için burada çağrılabilir)
+  const R = +(AMAX - AMIN).toFixed(2), sonra = () => { faCiz(); adimSigdir($('fa-kap')); };
+  const A = adimKur($('fa-kap'), { adlar: FA.map(x => x[0].replace('Gözlemlerin sayılması, sınıflara işlenmesi', 'Gözlemlerin sayılması')),
+    pano: { min: tr(AMIN, 2), max: tr(AMAX, 2), R: tr(R, 2), k: '7', i: '7', L0: '50', m1: '53,5' },
+    degisti: (a, X) => { FAK = X; clearInterval(sayTimer); fa = a - 1; faCiz(); } });
+  adimSor(A, $('fa-s1'), { adim: 1, sonra, alanlar: [{ alan: 'R', anahtar: 'R', ad: 'R', dogru: R, tol: 0.011, yaz: tr(R, 2), hatalar: [
+      [AMAX + AMIN, 'iki değeri topladınız. Değişim aralığı en büyük ile en küçük arasındaki <b>farktır</b>.'],
+      [AMAX, 'bu en büyük değerin kendisi. Aralık için en küçük değeri çıkarın.'], [AMIN, 'bu en küçük değer. Aralık en büyük − en küçüktür.'],
+      [-R, 'işaret ters: en küçükten en büyüğü çıkardınız. R = en büyük − en küçük.']], genel: `R = ${tr(AMAX, 2)} − ${tr(AMIN, 2)}.` }],
+    tamam: `Doğru: R = ${tr(AMAX, 2)} − ${tr(AMIN, 2)} = <b>${tr(R, 2)}</b> kg. Bütün ağırlıklar bu 42,40 kg'lık aralığa yayılıyor.` });
+  adimSor(A, $('fa-s2'), { adim: 2, sonra, alanlar: [{ alan: 'k', anahtar: 'k', ad: 'k', dogru: 7, hatalar: [
+      [6, '1 + 3,322 · 1,699 ≈ 6,64; en yakın tam sayı 7 (6\'ya yuvarlanmaz).'], [6.64, 'sınıf sayısı tam sayıdır: 6,64 → 7.'],
+      [50, 'bu gözlem sayısı (n). Her gözleme bir sınıf açılmaz; sınıf sayısı genelde 5 ile 15 arasındadır.'],
+      [42.4, 'bu değişim aralığı (R). Sınıf sayısı genelde 5 ile 15 arasındadır.']],
+      notr: v => Number.isInteger(v) && v >= 5 && v <= 15 ? 'kurala uyar (5 ile 15 arası); ama bu tablo Sturges kuralıyla 1 + 3,322 · 1,699 ≈ 6,64, yani <b>7</b> sınıfla kuruldu. Başka k değerlerini 12. bölümde deneyin.' : null,
+      genel: 'sınıf sayısı genelde 5 ile 15 arasında seçilir. Sturges: 1 + 3,322 · 1,699 ≈ 6,64; en yakın tam sayı.' }],
+    tamam: 'Doğru: <b>k = 7</b>. 5 ile 15 arasında; Sturges kuralı da 1 + 3,322 · log₁₀(50) ≈ 6,6, yani 7 verir.' });
+  adimSor(A, $('fa-s3'), { adim: 3, sonra, alanlar: [{ alan: 'i', anahtar: 'i', ad: 'i', dogru: 7, hatalar: [
+      [R / 7, `R / k'yı yuvarlamadan aldınız (${tr(R / 7, 2)}). Sınırlar okunaklı olsun diye yukarı yuvarlanır.`], [6.1, `R / k = ${tr(R / 7, 2)}; sınırlar okunaklı olsun diye tam sayıya, yukarı yuvarlanır.`],
+      [6, `aşağı yuvarladınız. 7 sınıf × 6 kg = 42 kg, R'den (${tr(R, 2)}) küçük: en büyük değer (${tr(AMAX, 2)}) son sınıfın dışında kalır. Yukarı yuvarlanır.`],
+      [R, 'bu değişim aralığı (R). Genişlik için R\'yi sınıf sayısına bölün.'], [R * 7, 'R ile k\'yı çarptınız; bölmek gerekir: R / k.']],
+      genel: `i ≈ R / k = ${tr(R, 2)} / 7 ≈ ${tr(R / 7, 2)}, yukarı yuvarlanır.`, tol: 0.006 }],
+    tamam: `Doğru: R / k = ${tr(R, 2)} / 7 ≈ ${tr(R / 7, 2)}, yukarı yuvarlanınca <b>i = 7 kg</b>. 7 sınıf × 7 kg = 49 kg, aralığın tamamını kapsar.` });
+  adimSor(A, $('fa-s4'), { adim: 4, sonra, alanlar: [{ alan: 'L0', anahtar: 'L0', ad: 'ilk alt sınır', dogru: 50, hatalar: [
+      [AMIN, 'bu en küçük değerin kendisi. Sınırlar kolay okunsun diye en küçük değeri içine alan <b>yuvarlak</b> bir sayıdan başlanır.'],
+      [52, `52 de en küçük değeri (${tr(AMIN, 2)}) içine alır; ama bu tablo yuvarlak sayı 50'den başlıyor (sunumdaki tablo da öyle).`],
+      [55, `en küçük değerin (${tr(AMIN, 2)}) üstünde: o değer hiçbir sınıfa girmez. İlk alt sınır en küçük değerden büyük olamaz.`],
+      [60, `en küçük değerin (${tr(AMIN, 2)}) üstünde: o değer hiçbir sınıfa girmez. İlk alt sınır en küçük değerden büyük olamaz.`],
+      [45, `en küçük değerden çok aşağıda: ilk sınıf boş kalır ve 7 sınıf 45 + 49 = 94'te biter, ${tr(AMAX, 2)} dışarıda kalır.`]],
+      genel: v => v > AMIN ? `en küçük değerden (${tr(AMIN, 2)}) büyük olamaz: o değer hiçbir sınıfa girmez.`
+        : v < AMAX - 49 ? `en büyük değer (${tr(AMAX, 2)}) dışarıda kalır: 7 sınıf ${tr(v, 2)} + 49 = ${tr(v + 49, 2)}'da biter.`
+        : 'olur (bütün değerler sınıflara girer), ama bu tablo yuvarlak sayı 50\'den başlıyor (sunumdaki tablo da öyle).', tol: 0.006 }],
+    tamam: `Doğru: <b>50</b>. Sınıflar 50-57'den az, 57-64'ten az, …, 92-99'dan az; ${tr(AMAX, 2)} son sınıfa girer.` });
+  adimSec(A, $('fa-s4b'), { adim: 4, dogru: '64', anahtar: 'sinir', gb: $('fa-s4b-gb'), sonra,
+    mesajlar: { 57: 'Üst sınır <b>hariçtir</b>: "57-64\'ten az" sınıfına 64\'ten küçük değerler girer. 64,00 bir sonraki sınıfın alt sınırıdır ve alt sınır dahildir.' },
+    tamam: 'Doğru: <b>64-71\'den az</b>. Alt sınır dahil, üst sınır hariç (64 ≤ x &lt; 71); her değer tek bir sınıfa girer.' });
+  adimSor(A, $('fa-s5'), { adim: 5, sonra, alanlar: [{ alan: 'm1', anahtar: 'm1', ad: 'orta nokta', dogru: 53.5, yaz: '53,5', hatalar: [
+      [53, 'orta nokta yuvarlanmaz: (50 + 57) / 2 = 53,5.'], [54, 'orta nokta yuvarlanmaz: (50 + 57) / 2 = 53,5.'],
+      [107, 'alt ve üst sınırı topladınız ama ikiye bölmediniz.'], [7, 'bu sınıf genişliği (57 − 50). Orta nokta = (alt + üst) / 2.'],
+      [3.5, 'bu genişliğin yarısı; alt sınıra ekleyin: 50 + 3,5.'], [28.5, 'yalnız üst sınırı ikiye böldünüz. Orta nokta = (alt + üst) / 2.']],
+      genel: 'orta nokta = (alt sınır + üst sınır) / 2 = (50 + 57) / 2.' }],
+    tamam: 'Doğru: (50 + 57) / 2 = <b>53,5</b>. Öteki sınıfların orta noktaları 7\'şer artar: 60,5; 67,5; …; 95,5.' });
+}
 
 function agirlikGrafik(mod) {
   const f = [0].concat(esitSinif(AGIRLIK, 7, 50, 7)).concat([0]);
@@ -1063,6 +1201,7 @@ $('etk-kontrol').onclick = () => {
 // ---------- sunum modu ----------
 // Her bölüm, ekran yüksekliğine göre ölçülüp birkaç slayda bölünür.
 // Başlık (h4) ve düğme satırı (.controls) ardındaki içerikten ayrılmaz.
+// Adım kalıbının kabı (data-adimli) bölünmez: tek birim olarak kendi slaytında durur; sığmazsa sigdir() küçültür.
 const BOLUMLER = [document.querySelector('.hero'), ...document.querySelectorAll('.section')];
 const KISIM = BOLUMLER.map(el => { let p = el.previousElementSibling; while (p && !p.classList.contains('part-title')) { if (p.classList.contains('hero')) return ''; p = p.previousElementSibling; } return p ? p.textContent : ''; });
 const BASLIK = BOLUMLER.map((el, i) => i === 0 ? 'Kapak' : el.querySelector('.section-header').innerText.replace(/^\S+\s*/, ''));
@@ -1074,6 +1213,7 @@ function parcala() {
   SLAYT = [{ b: 0, parca: null, k: 1, n: 1 }];
   BOLUMLER.slice(1).forEach((sec, i) => {
     const body = sec.querySelector('.section-body'), kids = [...body.children];
+    Object.assign(body.style, { transform: '', transformOrigin: '', width: '', marginBottom: '' });
     const zorla = [...sec.querySelectorAll('[data-olc]')].map(e => [e, e.style.display]);
     zorla.forEach(([e]) => e.style.display = '');
     kids.forEach(c => c.classList.remove('gizli-p'));
@@ -1085,11 +1225,12 @@ function parcala() {
     zorla.forEach(([e, d]) => e.style.display = d);
     const birim = []; let cur = null;
     kids.forEach((c, j) => { if (!cur) cur = { el: [], h: 0 }; cur.el.push(c); cur.h += yuk[j]; if (!bitisik(c) || j === kids.length - 1) { birim.push(cur); cur = null; } });
+    birim.forEach(u => u.ay = u.el.some(e => e.matches('[data-adimli]') || e.querySelector('[data-adimli]')));
     const dagit = L => { const out = []; let p = null;
-      birim.forEach(u => { if (p && p.h + u.h > L) { out.push(p); p = null; } if (!p) p = { el: [], h: 0 }; p.el.push(...u.el); p.h += u.h; });
+      birim.forEach(u => { if (p && (p.h + u.h > L || u.ay || p.ay)) { out.push(p); p = null; } if (!p) p = { el: [], h: 0, ay: false }; p.el.push(...u.el); p.h += u.h; p.ay = p.ay || u.ay; });
       if (p) out.push(p); return out; };
-    // Slayt sayısını artırmadan içeriği dengeli dağıt: sonda küçük artık kalmasın.
-    const n = dagit(bos).length; let lo = Math.max(...birim.map(u => u.h)), hi = Math.max(bos, lo);
+    // Slayt sayısını artırmadan içeriği dengeli dağıt: sonda küçük artık kalmasın. Adımlı kap zaten tek başına durur, ölçüye girmez.
+    const n = dagit(bos).length; let lo = Math.max(1, ...birim.filter(u => !u.ay).map(u => u.h)), hi = Math.max(bos, lo);
     for (let t = 0; t < 25; t++) { const m = (lo + hi) / 2; if (dagit(m).length <= n) hi = m; else lo = m; }
     const parcalar = dagit(hi);
     parcalar.forEach((pp, k) => SLAYT.push({ b: i + 1, parca: pp.el, k: k + 1, n: parcalar.length }));
@@ -1100,20 +1241,41 @@ function slaytGoster(i, yon) {
   const S = SLAYT[si], el = BOLUMLER[S.b];
   BOLUMLER.forEach(x => x.classList.remove('slide-on', 'ileri', 'geri'));
   if (S.parca) {
-    el.querySelectorAll('.section-body > *').forEach(c => c.classList.toggle('gizli-p', !S.parca.includes(c)));
+    // Slaytın ilk öğesinin üst boşluğu ölçüde yoktu (parcala boşluğu bir önceki öğeye sayar): sunumda sıfırlanır.
+    el.querySelectorAll('.section-body > *').forEach(c => { c.classList.toggle('gizli-p', !S.parca.includes(c)); c.classList.toggle('ilk-p', c === S.parca[0]); });
     el.querySelector('.parca-no').textContent = S.n > 1 ? `(${S.k}/${S.n})` : '';
   }
   void el.offsetWidth; el.classList.add('slide-on', yon < 0 ? 'geri' : 'ileri'); el.scrollTop = 0;
+  if (document.activeElement && document.activeElement !== document.body && !document.activeElement.closest('#sunum-bar')) document.activeElement.blur();
+  sigdir(el);
   $('sb-bilgi').textContent = `${si + 1} / ${SLAYT.length}  ·  ${KISIM[S.b] ? KISIM[S.b] + '  ·  ' : ''}${BASLIK[S.b]}`;
   $('sb-ilerleme').style.width = (100 * (si + 1) / SLAYT.length) + '%';
   $('sb-geri').disabled = si === 0; $('sb-ileri').disabled = si === SLAYT.length - 1;
   requestAnimationFrame(() => el.querySelectorAll('canvas').forEach(c => { const ch = Chart.getChart(c); if (ch) ch.resize(); }));
+}
+// Adım kalıbı slayta sığmıyorsa bölümün gövdesini küçültür (PowerPoint'teki "taşarsa sığdır" gibi). Yalnız görünen
+// bir adımlı kap (data-adimli) varsa çalışır; öteki slaytlar parcala() ile zaten sığar ve dokunulmaz.
+// CSS zoom değil transform (zoom Chart.js tıklamalarını bozar). Genişlik 1/f açılınca içerik yayılır ve kısalır;
+// sığan en büyük f ikili aramayla bulunur, alt sınır 0.8 (0.8'de de sığmazsa slayt kayar; içerik kısaltılmalı).
+const SIG_ALT = 0.8;
+function sigdir(el) {
+  const g = el && el.querySelector('.section-body'); if (!g) return;
+  Object.assign(g.style, { transform: '', transformOrigin: '', width: '', marginBottom: '' }); el.dataset.olcek = '1';
+  if (!document.body.classList.contains('sunum') || ![...el.querySelectorAll('[data-adimli]')].some(x => !x.closest('.gizli-p'))) return;
+  const alan = el.clientHeight - g.offsetTop - 4; if (g.offsetHeight <= alan) return;
+  const sigar = f => { g.style.width = (100 / f) + '%'; return g.offsetHeight * f <= alan; };
+  let lo = SIG_ALT, hi = 1;
+  for (let k = 0; k < 10; k++) { const mid = (lo + hi) / 2; if (sigar(mid)) lo = mid; else hi = mid; }
+  const f = lo; g.style.width = (100 / f) + '%';
+  Object.assign(g.style, { transformOrigin: 'top left', transform: `scale(${f.toFixed(3)})`, marginBottom: -(g.offsetHeight * (1 - f)) + 'px' });
+  el.dataset.olcek = f.toFixed(3);
 }
 function sunumAc() { document.body.classList.add('sunum'); parcala(); slaytGoster(SLAYT.findIndex(x => x.b === sonGorunen), 1); }
 function sunumKapat() {
   document.body.classList.remove('sunum');
   BOLUMLER.forEach(el => el.classList.remove('slide-on', 'ileri', 'geri'));
   document.querySelectorAll('.gizli-p').forEach(c => c.classList.remove('gizli-p'));
+  document.querySelectorAll('.section-body').forEach(g => Object.assign(g.style, { transform: '', transformOrigin: '', width: '', marginBottom: '' }));
   document.querySelectorAll('.parca-no').forEach(x => x.textContent = '');
   if (document.fullscreenElement) document.exitFullscreen();
   BOLUMLER[SLAYT[si].b].scrollIntoView(); Object.values(charts).forEach(c => c.resize());
@@ -1126,13 +1288,22 @@ window.addEventListener('resize', () => {
     const j = SLAYT.findIndex(x => x.b === S.b && S.parca && x.parca && x.parca.includes(S.parca[0])); slaytGoster(j >= 0 ? j : SLAYT.findIndex(x => x.b === S.b), 1); }, 250);
 });
 $('sunum-ac').onclick = sunumAc; $('sb-cik').onclick = sunumKapat;
-$('sb-ileri').onclick = () => slaytGoster(si + 1, 1); $('sb-geri').onclick = () => slaytGoster(si - 1, -1);
+// Görünen slaytta adım adım ilerleyen bir kap varsa (ADIMLI kaydı), ok tuşları ve › ‹ düğmeleri önce adımları gezer,
+// son adımdan sonra slayta geçer. Kayıt adimKur() ile eklenir.
+function adimla(yon) {
+  const kayit = window.ADIMLI || []; if (!SLAYT.length) return false;
+  const el = BOLUMLER[SLAYT[si].b], a = kayit.find(x => x.el && el.contains(x.el) && !x.el.closest('.gizli-p'));
+  return a ? a[yon]() : false;
+}
+$('sb-ileri').onclick = () => { if (!adimla('ileri')) slaytGoster(si + 1, 1); }; $('sb-geri').onclick = () => { if (!adimla('geri')) slaytGoster(si - 1, -1); };
 $('sb-tam').onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
 document.addEventListener('keydown', e => {
   if (!document.body.classList.contains('sunum')) return;
-  const t = e.target.tagName; if (t === 'INPUT' || t === 'SELECT' || t === 'TEXTAREA') return;
-  if (['ArrowRight', 'PageDown'].includes(e.key)) { e.preventDefault(); slaytGoster(si + 1, 1); }
-  else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); slaytGoster(si - 1, -1); }
+  // PageDown/PageUp (kumanda) her zaman gezinir; oklar kaydırıcı üzerinde de gezinir, yalnız metin kutusunda yazım için kalır.
+  const t = e.target, tag = t.tagName, kumanda = e.key === 'PageDown' || e.key === 'PageUp';
+  if (!kumanda && (tag === 'SELECT' || tag === 'TEXTAREA' || (tag === 'INPUT' && t.type !== 'range'))) return;
+  if (['ArrowRight', 'PageDown'].includes(e.key)) { e.preventDefault(); if (!adimla('ileri')) slaytGoster(si + 1, 1); }
+  else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); if (!adimla('geri')) slaytGoster(si - 1, -1); }
   else if (e.key === 'Home') slaytGoster(0, -1);
   else if (e.key === 'End') slaytGoster(SLAYT.length - 1, 1);
   else if (e.key === 'Escape' && !document.fullscreenElement) sunumKapat();
@@ -1140,6 +1311,92 @@ document.addEventListener('keydown', e => {
 });
 const gorunenObs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !document.body.classList.contains('sunum')) sonGorunen = BOLUMLER.indexOf(e.target); }), { rootMargin: '-30% 0px -60% 0px' });
 BOLUMLER.forEach(el => gorunenObs.observe(el));
+
+// ---------- adım kalıbı (ortak; 2. bölüm de kullanır) ----------
+// Yapı: data-adimli taşıyan .ad-kutu kabı; içinde
+//   .ad-pano ve .ad-hucre kutuları (data-anahtar, data-adim, isteğe bağlı data-sor; içinde ad, değer, "n. adım"; renk --r ile),
+//   boş .ad-adimlar (adım düğmeleri buraya yazılır), data-adim taşıyan .ad-adim blokları (data-adim 4,5 gibi liste de olur),
+//   .ad-gez içinde .ad-geri ve .ad-ileri düğmeleri.
+// adimKur(kap, { adlar: [...], pano: { anahtar: 'değer (HTML)' }, degisti: (a, A) => {} }) -> A { a, git, ac, kap }
+// data-sor taşıyan hücre öğrenci bulunca (A.ac) ya da sonraki adıma geçilince dolar; taşımayan kendi adımında dolar.
+// Bu fonksiyonlar bildirimdir (hoisting): sayfanın kendi kodu bu bloktan önce çalışsa da çağırabilir.
+function adimSigdir(kap) {
+  if (!document.body.classList.contains('sunum') || !SLAYT.length) return;
+  const el = BOLUMLER[SLAYT[si].b]; if (el && el.contains(kap)) sigdir(el);
+}
+function adimKur(kap, o) {
+  const A = { a: 1, n: o.adlar.length, acik: new Set(), kap, sorular: [] };
+  const bloklar = [...kap.querySelectorAll('.ad-adim')], cubuk = kap.querySelector('.ad-adimlar');
+  const geri = kap.querySelector('.ad-geri'), ileri = kap.querySelector('.ad-ileri');
+  A.panoYaz = () => kap.querySelectorAll('.ad-hucre').forEach(h => {
+    const k = h.dataset.anahtar, ad = +h.dataset.adim, dolu = h.hasAttribute('data-sor') ? (A.a > ad || A.acik.has(k)) : A.a >= ad;
+    const once = h.classList.contains('dolu'); h.classList.toggle('dolu', dolu); h.querySelector('b').innerHTML = dolu ? o.pano[k] : '?';
+    if (dolu && !once) { h.classList.remove('yanip'); void h.offsetWidth; h.classList.add('yanip'); } });
+  A.ac = (...k) => { k.forEach(x => A.acik.add(x)); A.panoYaz(); adimSigdir(kap); };
+  // Doğru cevap sonradan bozulursa panodaki değer geri alınır (adıma özgü vurgular da degisti ile yenilenir).
+  A.kapat = (...k) => { if (!k.some(x => A.acik.has(x))) return; k.forEach(x => A.acik.delete(x)); A.ciz(); };
+  A.ciz = () => {
+    // Geçilen adımların alıştırmaları kendiliğinden dolar (öğrenci geri dönerse cevabı görür).
+    A.sorular.forEach(s => { if (s.adim < A.a && !s.bitti()) s.doldur(); });
+    // Geçilmiş adımların kutuları salt okunur, düğmeleri pasif; o adıma dönülünce yeniden düzenlenebilir.
+    A.sorular.forEach(s => s.kilit(s.adim < A.a));
+    bloklar.forEach(b => b.classList.toggle('on', b.dataset.adim.split(',').map(Number).includes(A.a)));
+    kap.dataset.su = A.a;  // CSS'te adıma özgü görünüm için: .ad-kutu[data-su="3"] ...
+    if (cubuk) { cubuk.innerHTML = o.adlar.map((t, k) => `<button data-a="${k + 1}" class="${k + 1 === A.a ? 'active' : k + 1 < A.a ? 'gecti' : ''}">${k + 1}. ${t}</button>`).join('');
+      cubuk.querySelectorAll('button').forEach(b => b.onclick = () => A.git(+b.dataset.a)); }
+    if (geri) geri.disabled = A.a === 1; if (ileri) ileri.disabled = A.a === A.n;
+    A.panoYaz(); if (o.degisti) o.degisti(A.a, A); adimSigdir(kap);
+  };
+  A.git = k => { A.a = Math.max(1, Math.min(A.n, k)); const o = document.activeElement; if (o && kap.contains(o)) o.blur(); A.ciz(); };
+  if (geri) geri.onclick = () => A.git(A.a - 1); if (ileri) ileri.onclick = () => A.git(A.a + 1);
+  (window.ADIMLI = window.ADIMLI || []).push({ el: kap, ileri: () => A.a < A.n ? (A.git(A.a + 1), true) : false, geri: () => A.a > 1 ? (A.git(A.a - 1), true) : false });
+  A.ciz();
+  return A;
+}
+// Giriş kutulu alıştırma. kutu: .ad-giris (içinde data-alan taşıyan girişler, .ad-kontrol, .ad-goster, .ad-gb).
+// o = { adim, alanlar: [{ alan, anahtar?, dogru, tol? (kabul payı), yaz?, ad, hatalar: [[değer, 'mesaj'], ...], notr?: v => 'mesaj'|null, genel: 'mesaj' | v => 'mesaj' }], tamam: 'HTML', sonra? }
+// Kontrol et: her yanlış kutu için tanınan hatanın mesajı (yoksa genel mesaj); hepsi doğruysa tamam mesajı ve panodaki anahtarlar dolar.
+function adimSor(A, kutu, o) {
+  const gir = al => kutu.querySelector(`input[data-alan="${al.alan}"]`), gb = kutu.querySelector('.ad-gb');
+  // Yalnız sayı kabul edilir ("15 kg", "15abc" geçmez); ondalık virgül ya da nokta, eksi için - ya da −.
+  const temiz = v => String(v).trim().replace('−', '-'), sayiMi = v => /^-?\d+([.,]\d+)?$/.test(temiz(v));
+  const sayiOku = v => sayiMi(v) ? parseFloat(temiz(v).replace(',', '.')) : NaN, es = (x, y, t = 1e-6) => Math.abs(x - y) < t;
+  const yaz = (h, ok) => { gb.className = 'ad-gb ' + (ok ? 'ok' : 'no'); gb.innerHTML = h; adimSigdir(A.kap); };
+  let bitti = false;
+  const doldur = () => { bitti = true; o.alanlar.forEach(al => { const i = gir(al); i.value = al.yaz || String(al.dogru).replace('.', ','); i.className = 'ok'; });
+    A.ac(...o.alanlar.map(al => al.anahtar).filter(Boolean)); yaz(o.tamam, true); if (o.sonra) o.sonra(); };
+  kutu.querySelector('.ad-goster').onclick = doldur;
+  // Doğru cevaptan sonra bir kutu değiştirilirse yeniden Kontrol et istenir, panodaki değerler boşalır.
+  o.alanlar.forEach(al => gir(al).addEventListener('input', () => { if (!bitti) return; bitti = false; gir(al).className = '';
+    gb.className = 'ad-gb'; gb.innerHTML = ''; A.kapat(...o.alanlar.map(x => x.anahtar).filter(Boolean)); }));
+  kutu.querySelector('.ad-kontrol').onclick = () => {
+    const h = []; let bos = false, hepsiNotr = true;  // notr: kurala uyan ama bu örnekte kullanılmayan cevap (sarı, nötr)
+    o.alanlar.forEach(al => { const i = gir(al), v = sayiOku(i.value);
+      if (i.value.trim() === '') { bos = true; i.className = ''; return; }
+      if (!isFinite(v)) { i.className = 'no'; hepsiNotr = false; h.push(`<b>${al.ad} = ${i.value.trim()}</b>: yalnız sayı yazın (birim ya da harf olmadan; ondalık için virgül).`); return; }
+      if (es(v, al.dogru, al.tol)) { i.className = 'ok'; return; }
+      const t = (al.hatalar || []).find(([x]) => es(v, x, al.tol)), n = !t && al.notr ? al.notr(v) : null;
+      i.className = n ? 'uy' : 'no'; if (!n) hepsiNotr = false;
+      h.push(`<b>${al.ad} = ${i.value.trim()}</b>: ${t ? t[1] : n || (typeof al.genel === 'function' ? al.genel(v) : al.genel)}`); });
+    if (h.length) { yaz(h.join('<br>'), false); if (hepsiNotr) gb.className = 'ad-gb uy'; }
+    else if (bos) yaz('Bütün kutuları doldurun (ondalık için virgül kullanabilirsiniz).', false);
+    else doldur();
+  };
+  A.sorular.push({ adim: o.adim, bitti: () => bitti, doldur, kilit: on => { kutu.querySelectorAll('input').forEach(i => i.readOnly = on);
+    kutu.querySelectorAll('.ad-kontrol, .ad-goster').forEach(b => b.disabled = on); } });
+}
+// Seçmeli alıştırma: kutu içindeki .ad-sec düğmelerinden (data-sec) biri doğrudur.
+// o = { adim, dogru: 'değer', anahtar?, mesajlar: { değer: 'mesaj' }, varsayilan?: 'mesaj', tamam: 'HTML', gb: geri bildirim öğesi, sonra? }
+function adimSec(A, kutu, o) {
+  const dg = kutu.querySelectorAll('.ad-sec'); let bitti = false;
+  const yaz = (h, ok) => { o.gb.className = 'ad-gb ' + (ok ? 'ok' : 'no'); o.gb.innerHTML = h; adimSigdir(A.kap); };
+  const doldur = () => { bitti = true; dg.forEach(b => b.classList.toggle('ok', b.dataset.sec === o.dogru)); dg.forEach(b => b.classList.remove('no'));
+    if (o.anahtar) A.ac(o.anahtar); yaz(o.tamam, true); if (o.sonra) o.sonra(); };
+  dg.forEach(b => b.onclick = () => { if (b.dataset.sec === o.dogru) return doldur();
+    if (bitti) { bitti = false; if (o.anahtar) A.kapat(o.anahtar); }
+    dg.forEach(x => x.classList.remove('no', 'ok')); b.classList.add('no'); yaz(o.mesajlar[b.dataset.sec] || o.varsayilan || 'Bu seçenek doğru değil; yeniden bakın.', false); });
+  A.sorular.push({ adim: o.adim, bitti: () => bitti, doldur, kilit: on => dg.forEach(b => b.disabled = on) });
+}
 
 // ---------- menü vurgusu ----------
 const navA = [...document.querySelectorAll('#sidebar a')];

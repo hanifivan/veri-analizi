@@ -187,7 +187,75 @@
   @media(max-width:700px) { .fa-yan { grid-template-columns: minmax(0, 1fr); } .fa-yan #fa-tablo td, .fa-yan #fa-tablo th { white-space: normal; padding: 4px 5px; } #fa-tablo-wrap { overflow-x: auto; } .fa-yan #fa-tablo td:first-child { white-space: nowrap; } #sunum-ac { display: none; } }
   body.sunum #s11 .fa-yan .fa-ham div { padding: 3px 2px; }
   body.sunum #s11 #fa-tablo { font-size: 14px; }
+  .fa-gez { justify-content: flex-start; gap: 8px; align-items: center; }
+  /* 1100 px altında (sunum hariç) iki sütun alt alta: sağ sütun (soru, tablo) öne, ham ızgara 10 sütun */
+  @media(max-width:1100px) { body:not(.sunum) #fa-kap .fa-yan { grid-template-columns: minmax(0, 1fr); } body:not(.sunum) #fa-kap .fa-yan > div:last-child { order: -1; }
+    body:not(.sunum) #fa-kap .fa-yan .fa-ham { grid-template-columns: repeat(10, 1fr); } }
+  @media(max-width:700px) { body:not(.sunum) #fa-kap .fa-yan .fa-ham { grid-template-columns: repeat(5, 1fr); } #fa-tablo { font-size: 11px; } .fa-yan #fa-tablo td, .fa-yan #fa-tablo th { padding: 3px 3px; } }
+  .ad-giris input.uy { border-color: var(--orange); background: #FFF6E8; }
+  .ad-gb.uy { background: #FFF6E8; color: #7a4d00; }
+  #fa-kap .ad-giris label { white-space: normal; }
+  body.sunum #s11 #fa-acik { font-size: 15px; line-height: 1.55; padding: .5rem .8rem; }
+  body.sunum #s11 #fa-kap .ad-giris, body.sunum #s11 #fa-kap .ad-gb { font-size: 15px; }
+  body.sunum #s11 .fa-yan { margin-top: .2rem; }
   body.sunum #s11 .info-box { font-size: 15px; line-height: 1.6; padding: .6rem .9rem; }
+
+  /* ADIM KALIBI (ortak; 2. bölüm de kullanır). Kap: .ad-kutu[data-adimli]; renkler hücrede ve metinde --r ile verilir.
+     Pano: .ad-hucre[data-anahtar][data-adim] (data-sor: öğrenci bulur), içinde span (ad), b (değer), i ("n. adım"). */
+  .ad-kutu { border: 1.5px solid var(--border); border-radius: 10px; padding: .8rem 1rem; background: #fff; margin-top: .6rem; }
+  .ad-pano { display: grid; grid-template-columns: repeat(auto-fit, minmax(108px, 1fr)); gap: .45rem; margin: .4rem 0 .7rem; }
+  .ad-hucre { --r: var(--navy); border: 2px dashed #cfd8e3; border-radius: 10px; padding: .3rem .4rem; text-align: center; background: #fafbfc; transition: border-color .4s, background .4s; min-width: 0; }
+  .ad-hucre span { display: block; font-size: 12px; color: var(--gray); line-height: 1.35; }
+  .ad-hucre b { display: block; font-size: 20px; color: #b8c2cf; font-family: "SF Mono", Menlo, Consolas, monospace; line-height: 1.35; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ad-hucre i { display: block; font-size: 11px; color: #b8c2cf; font-style: normal; }
+  .ad-hucre.dolu { border-style: solid; border-color: var(--r); background: #fff; }
+  .ad-hucre.dolu b { color: var(--r); }
+  .ad-hucre.dolu i { visibility: hidden; }
+  .ad-hucre.yanip { animation: adYan 1.2s ease; }
+  @keyframes adYan { 0% { transform: scale(1.1); box-shadow: 0 0 0 6px rgba(239,159,39,.35); } 100% { transform: none; box-shadow: none; } }
+  .ad-r { color: var(--r); font-weight: 700; }
+  .ad-adimlar { display: flex; gap: .3rem; flex-wrap: wrap; margin-bottom: .5rem; }
+  .ad-adimlar button { font-size: 12.5px; padding: 4px 10px; border-radius: 16px; }
+  .ad-adimlar button.gecti { background: #E6F7F0; border-color: var(--green); color: #0d5c43; }
+  .ad-adimlar button.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+  .ad-adim { display: none; }
+  .ad-adim.on { display: block; animation: adBelir .35s ease; }
+  @keyframes adBelir { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+  .ad-adim h5 { margin: .2rem 0 .4rem; font-size: 15px; color: var(--navy); }
+  .ad-yaz { background: #F3F7FB; border-radius: 8px; padding: .5rem .8rem; margin-top: .5rem; line-height: 1.7; }
+  .ad-f { font-size: 18px; text-align: center; line-height: 2.1; margin: .5rem 0; overflow-x: auto; overflow-y: hidden; }
+  .ad-frac { display: inline-flex; flex-direction: column; vertical-align: middle; text-align: center; margin: 0 .15em; line-height: 1.25; }
+  .ad-frac > span:first-child { border-bottom: 1.5px solid currentColor; padding: 0 .3em .05em; }
+  .ad-frac > span:last-child { padding: .05em .3em 0; }
+  .ad-giris { background: #F7F5FF; border: 1px solid #d9d4f7; border-radius: 8px; padding: .5rem .8rem; margin-top: .5rem; }
+  .ad-giris label { margin-right: .8rem; white-space: nowrap; display: inline-block; }
+  .ad-giris input { width: 4.6em; font-size: inherit; padding: 2px 6px; border: 1.5px solid #b9b2ee; border-radius: 6px; text-align: right; font-family: inherit; }
+  .ad-giris input.ok { border-color: var(--green); background: #E6F7F0; }
+  .ad-giris input.no { border-color: var(--red); background: #FDECEC; }
+  .ad-giris button { margin: .3rem .3rem 0 0; }
+  .ad-gb:empty { display: none; }
+  .ad-gb { margin-top: .45rem; padding: .45rem .8rem; border-radius: 6px; line-height: 1.6; }
+  .ad-gb.ok { background: #E6F7F0; color: #0d5c43; }
+  .ad-gb.no { background: #FDECEC; color: #8a2020; }
+  .ad-sec.ok { background: #E6F7F0; border-color: var(--green); color: #0d5c43; font-weight: 700; }
+  .ad-sec.no { background: #FDECEC; border-color: var(--red); color: #8a2020; }
+  .ad-gez { display: flex; justify-content: space-between; margin-top: .6rem; }
+  .ad-grafik { position: relative; margin-top: .5rem; }
+  .ad-grafik svg { display: block; width: 100%; height: auto; max-height: 300px; }
+  @media(max-width:700px) { .ad-kutu { padding: .6rem; } .ad-pano { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .3rem; } .ad-hucre { padding: .25rem .2rem; } .ad-hucre span { font-size: 10.5px; } .ad-hucre b { font-size: 16px; } .ad-f { font-size: 15px; } }
+  body.sunum .ad-kutu { border: none; padding: 0; margin-top: 0; }
+  body.sunum .ad-pano { margin: .1rem 0 .35rem; }
+  body.sunum .ad-hucre { padding: .15rem .4rem; }
+  body.sunum .ad-hucre span { font-size: 15px; } body.sunum .ad-hucre b { font-size: 25px; } body.sunum .ad-hucre i { display: none; }
+  body.sunum .ad-adimlar { margin-bottom: .3rem; }
+  body.sunum .ad-adimlar button { font-size: 16px; padding: 3px 12px; }
+  body.sunum .ad-adim h5 { font-size: 22px; margin-bottom: .25rem; }
+  body.sunum .ad-yaz { font-size: 19px; padding: .35rem .7rem; margin-top: .35rem; line-height: 1.55; }
+  body.sunum .ad-giris, body.sunum .ad-gb { font-size: 18px; }
+  body.sunum .ad-f { font-size: 26px; line-height: 1.9; margin: .3rem 0; }
+  body.sunum .ad-grafik svg { max-height: 280px; }
+  /* sunumda adımlar ok tuşu/kumandayla gezilir: düğmeler gizli */
+  body.sunum .ad-gez { display: none; }
 
   /* SUNUM MODU */
   #sunum-ac { position: fixed; top: 14px; right: 18px; z-index: 200; background: var(--teal); color: #fff; border: none; font-weight: 700; font-size: 13px; padding: 8px 16px; border-radius: 20px; box-shadow: 0 2px 10px rgba(0,0,0,.2); }
@@ -225,6 +293,7 @@
   body.sunum .stem { font-size: 22px; }
   body.sunum .rawgrid { font-size: 15px; }
   body.sunum .gizli-p { display: none !important; }
+  body.sunum .ilk-p { margin-top: 0 !important; }
   body.sunum #s3 .chart-wrap, body.sunum #s9 .chart-wrap { height: min(360px, 34vh); }
   .parca-no { margin-left: auto; font-size: .75em; color: #a8c8d8; font-weight: 600; }
   @media print { #sunum-ac, #sunum-bar { display: none !important; } }
@@ -273,6 +342,38 @@
   .calc input[type=text] { width: 100%; font-size: 14px; padding: 6px 9px; border: 1.5px solid #ddd; border-radius: 6px; font-family: inherit; }
   .calc input.hata { border-color: var(--red); }
   .telif { font-size: 11px; color: var(--gray); }
+  /* 8 ve 10: mod ve kartil adım kalıbı */
+  #mo-tablo .d1 { background: #FBE3EC !important; font-weight: 700; }
+  #mo-tablo .d2 { background: #FDEBD9 !important; font-weight: 700; }
+  #mo-tablo th.hl, #ka-tablo th.hl { background: var(--teal) !important; }
+  #mo-kap .ad-sec, #ka-kap .ad-sec { margin: .2rem .1rem; }
+  #mo-kap .ad-hucre span math, #ka-kap .ad-hucre span math { font-size: 1em; }
+  .mo-yan { align-items: center; margin-top: .3rem; }
+  .ka-sat { display: flex; align-items: center; gap: .4rem; } .ka-sat > b { color: var(--navy); font-size: 15px; min-width: 1.6em; } .ka-sat .ad-pano { flex: 1; min-width: 0; margin: .2rem 0; }
+  body.sunum .ka-sat .ad-pano { margin: .1rem 0 .25rem; } body.sunum .ka-sat > b { font-size: 20px; }
+  body.sunum #mo-kap table, body.sunum #ka-kap table { font-size: 17px; }
+  body.sunum #mo-kap .ad-yaz math, body.sunum #ka-kap .ad-yaz math { font-size: 1em; }
+  body.sunum #mo-kap .chart-wrap-sm { height: 230px; }
+  @media(max-width:700px) { #mo-kap .chart-wrap-sm { height: 180px; } }
+  body.sunum #md-kap .ad-adim[data-adim="4"] .ad-yaz { font-size: 17px; line-height: 1.45; }
+  body.sunum #mo-kap .info-box { font-size: 16px; padding: .4rem .8rem; }
+  .ka-iki { display: grid; grid-template-columns: 1fr 1fr; gap: .2rem 1.2rem; }
+  .ka-iki .ad-f { font-size: 16px; }
+  @media(max-width:900px) { .ka-iki { grid-template-columns: minmax(0, 1fr); } }
+  body.sunum .ka-iki .ad-f { font-size: 22px; } body.sunum .ka-iki .ad-yaz { font-size: 17px; }
+  .md-yatay .kisa { display: none; }
+  @media(max-width:700px) { .md-yatay .uzun { display: none; } .md-yatay .kisa { display: inline; } .ad-f { font-size: 14px; } .ad-f math { font-size: 1em; } }
+  /* 9: medyan adım kalıbı (ortak .ad-* sınıfları 1. bölüm şablonunda) */
+  .md-yatay th, .md-yatay td { text-align: center; padding: 4px 7px; white-space: nowrap; }
+  .md-yatay th:first-child, .md-yatay td:first-child { text-align: left; }
+  #md-tablo input { width: 3em; }
+  #md-tablo th.hl { background: var(--teal) !important; }
+  #md-kap[data-su="3"] .md-yalniz2 { display: none; }
+  #md-kap .ad-sec { margin: .2rem .1rem; }
+  #md-kap .ad-hucre span math { font-size: 1em; }
+  body.sunum #md-kap table { font-size: 17px; }
+  body.sunum #md-kap .ad-yaz math { font-size: 1em; }
+  @media(max-width:700px) { #md-kap .ad-giris { padding: .45rem .45rem; } .md-yatay { font-size: 11.5px; } .md-yatay th, .md-yatay td { padding: 3px 2px; } .md-yatay td:first-child, .md-yatay th:first-child { white-space: normal; min-width: 3.6em; } .md-yatay th, .md-yatay td { padding: 3px 1px; } #md-tablo input { width: 2.4em; padding: 2px 3px; } }
   body.sunum .cozum .adim { font-size: 17px; }
   body.sunum .soru { font-size: 18px; }
   body.sunum .kutular div { min-width: 58px; font-size: 18px; }
@@ -520,17 +621,68 @@
     <div class="formula"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mrow><mi>Mod</mi></mrow><mo>=</mo><msub><mi>L</mi><mrow><mrow><mi>mod</mi></mrow></mrow></msub><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>1</mn></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>1</mn></msub><mo>+</mo><msub><mi mathvariant="normal">Δ</mi><mn>2</mn></msub></mrow></mstyle></mfrac></mstyle><mo>·</mo><mi>i</mi></mrow></math></div>
     <p class="note"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>L</mi><mrow><mrow><mi>mod</mi></mrow></mrow></msub></mrow></math>: mod sınıfı aralığının alt sınırı · <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>1</mn></msub></mrow></math>: mod sınıfı frekansı − kendinden bir önceki sınıf frekansı · <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>2</mn></msub></mrow></math>: mod sınıfı frekansı − kendinden bir sonraki sınıf frekansı · <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mi>i</mi></mrow></math>: mod sınıfının sınıf aralığı</p>
     <div class="soru"><b>Örnek.</b> İftar çadırı verisinde günlük kullanılan et miktarının modunu hesaplayınız.</div>
-    <div class="cozum" data-cozum>
-      <button class="cz-btn">Çözümü göster (adım adım)</button> <button class="cz-hep">Tümü</button>
-      <div class="adim" data-olc>Mod sınıfı: 42-48 (f = 10). <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>L</mi><mrow><mrow><mi>mod</mi></mrow></mrow></msub><mo>=</mo><mn>42</mn><mo>,</mo><mspace width="1em" /><mi>i</mi><mo>=</mo><mn>6</mn></mrow></math></div>
-      <div class="adim" data-olc><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>1</mn></msub><mo>=</mo><mn>10</mn><mo>−</mo><mn>6</mn><mo>=</mo><mn>4</mn><mi>;</mi><mspace width="1em" /><msub><mi mathvariant="normal">Δ</mi><mn>2</mn></msub><mo>=</mo><mn>10</mn><mo>−</mo><mn>7</mn><mo>=</mo><mn>3</mn></mrow></math></div>
-      <div class="adim" data-olc><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mrow><mi>Mod</mi></mrow><mo>=</mo><msub><mi>L</mi><mrow><mrow><mi>mod</mi></mrow></mrow></msub><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>1</mn></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>1</mn></msub><mo>+</mo><msub><mi mathvariant="normal">Δ</mi><mn>2</mn></msub></mrow></mstyle></mfrac></mstyle><mo>·</mo><mi>i</mi></mrow></math> <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mo>=</mo><mn>42</mn><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo stretchy="false">(</mo><mn>10</mn><mo>−</mo><mn>6</mn><mo stretchy="false">)</mo></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mo stretchy="false">(</mo><mn>10</mn><mo>−</mo><mn>6</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>10</mn><mo>−</mo><mn>7</mn><mo stretchy="false">)</mo></mrow></mstyle></mfrac></mstyle><mo>·</mo><mn>6</mn></mrow></math></div>
-      <div class="adim" data-olc><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mrow><mi>Mod</mi></mrow><mo>=</mo><mn>42</mn><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>7</mn></mrow></mstyle></mfrac></mstyle><mo>·</mo><mn>6</mn><mo>≈</mo><mn>45,4</mn><mtext> </mtext><mrow><mi>kg</mi></mrow></mrow></math></div>
+    <div class="ad-kutu" data-adimli id="mo-kap">
+      <div class="ad-pano">
+        <div class="ad-hucre" data-anahtar="sinif" data-adim="1" data-sor style="--r:#028090"><span>Mod sınıfı</span><b>?</b><i>1. adım</i></div>
+        <div class="ad-hucre" data-anahtar="L" data-adim="2" data-sor style="--r:#378ADD"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>L</mi><mrow><mrow><mi>mod</mi></mrow></mrow></msub></mrow></math> alt sınır</span><b>?</b><i>2. adım</i></div>
+        <div class="ad-hucre" data-anahtar="i" data-adim="2" data-sor style="--r:#8B5E3C"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mi>i</mi></mrow></math> sınıf aralığı</span><b>?</b><i>2. adım</i></div>
+        <div class="ad-hucre" data-anahtar="d1" data-adim="3" data-sor style="--r:#C2185B"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>1</mn></msub></mrow></math> önceki komşuya fark</span><b>?</b><i>3. adım</i></div>
+        <div class="ad-hucre" data-anahtar="d2" data-adim="3" data-sor style="--r:#E65100"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>2</mn></msub></mrow></math> sonraki komşuya fark</span><b>?</b><i>3. adım</i></div>
+        <div class="ad-hucre" data-anahtar="mod" data-adim="5" style="--r:#1E2D5E"><span>Mod (kg)</span><b>?</b><i>5. adım</i></div>
+      </div>
+      <div class="ad-adimlar"></div>
+
+      <div class="ad-adim" data-adim="1"><h5>1. adım: En kalabalık sınıf hangisi?</h5></div>
+      <div class="ad-adim" data-adim="2"><h5>2. adım: Mod sınıfının alt sınırı ve aralığı</h5></div>
+      <div class="ad-adim" data-adim="3"><h5>3. adım: Komşularla farklar, <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>1</mn></msub></mrow></math> ve <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>2</mn></msub></mrow></math></h5></div>
+      <div class="ad-adim" data-adim="1,2,3">
+        <div class="tw"><table class="md-yatay" id="mo-tablo">
+          <tr><th>Sınıf (kg)</th><th data-k="0">30-36</th><th data-k="1">36-42</th><th data-k="2">42-48</th><th data-k="3">48-54</th><th data-k="4">54-60</th><th data-k="5">60-66</th></tr>
+          <tr><td>f<sub>i</sub> (gün)</td><td data-k="0">2</td><td data-k="1">6</td><td data-k="2">10</td><td data-k="3">7</td><td data-k="4">4</td><td data-k="5">1</td></tr>
+        </table></div>
+      </div>
+      <div class="ad-adim" data-adim="1">
+        <div class="ad-yaz">Mod en sık görülen değerdir. Sınıflanmış seride önce <b>en çok günün düştüğü sınıf</b>, yani frekansı en yüksek sınıf bulunur: <b>mod sınıfı</b>.</div>
+        <div class="ad-giris" id="mo-s1">Mod sınıfı hangisi? <button class="ad-sec" data-sec="0">30-36</button><button class="ad-sec" data-sec="1">36-42</button><button class="ad-sec" data-sec="2">42-48</button><button class="ad-sec" data-sec="3">48-54</button><button class="ad-sec" data-sec="4">54-60</button><button class="ad-sec" data-sec="5">60-66</button>
+          <div class="ad-gb" id="mo-s1-gb"></div></div>
+      </div>
+      <div class="ad-adim" data-adim="2">
+        <div class="ad-giris" id="mo-s2"><label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>L</mi><mrow><mrow><mi>mod</mi></mrow></mrow></msub></mrow></math> = <input data-alan="L" inputmode="decimal"></label>
+          <label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mi>i</mi></mrow></math> = <input data-alan="i" inputmode="decimal"></label><br>
+          <button class="ad-kontrol">Kontrol et</button><button class="ad-goster">Cevabı göster</button><div class="ad-gb"></div></div>
+      </div>
+      <div class="ad-adim" data-adim="3">
+        <div class="ad-yaz">Modun sınıf içindeki yeri iki komşuya göre belirlenir. <span class="ad-r" style="--r:#C2185B"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>1</mn></msub></mrow></math></span> = mod sınıfı frekansı − <b>önceki</b> sınıfın frekansı; <span class="ad-r" style="--r:#E65100"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>2</mn></msub></mrow></math></span> = mod sınıfı frekansı − <b>sonraki</b> sınıfın frekansı.</div>
+        <div class="ad-giris" id="mo-s3"><label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>1</mn></msub></mrow></math> = <input data-alan="d1" inputmode="decimal"></label>
+          <label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>2</mn></msub></mrow></math> = <input data-alan="d2" inputmode="decimal"></label><br>
+          <button class="ad-kontrol">Kontrol et</button><button class="ad-goster">Cevabı göster</button><div class="ad-gb"></div></div>
+      </div>
+
+      <div class="ad-adim" data-adim="4">
+        <h5>4. adım: Neden bu formül? Mod daha kalabalık komşuya doğru kayar</h5>
+        <div class="ad-yaz">Önceki komşuda 6, sonrakinde 7 gün var: sonraki komşu daha kalabalık, bu yüzden mod sınıfın ortasından (45) <b>sonraki komşuya doğru</b> kayar. Formül sınıfı <span class="ad-r" style="--r:#C2185B"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>1</mn></msub></mrow></math></span> : <span class="ad-r" style="--r:#E65100"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>2</mn></msub></mrow></math></span> = 4 : 3 oranında böler: alt sınırdan sınıfın <b>4/7</b>'si kadar ilerlenir. <b>Deneyin:</b> komşuların frekanslarını değiştirin. Mod hangi tarafa kayıyor? (Gri kesikli çizgi sınıfın ortası, 45.)</div>
+        <div class="controls" style="margin:.4rem 0 .2rem"><label>36-42 sınıfı: <b id="mk-a">6</b></label><input type="range" id="mk-sa" min="0" max="9" value="6"><label>48-54 sınıfı: <b id="mk-b">7</b></label><input type="range" id="mk-sb" min="0" max="9" value="7"></div>
+        <div class="grid2 mo-yan"><div class="chart-wrap-sm"><canvas id="mk-ch"></canvas></div><div class="ad-grafik" id="mo-grafik"></div></div>
+        <div class="info-box" id="mk-acik" style="margin-top:.4rem"></div>
+      </div>
+
+      <div class="ad-adim" data-adim="5">
+        <h5>5. adım: Değerleri formüle yerleştirin</h5>
+        <div class="ad-f"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mrow><mi>Mod</mi></mrow><mo>=</mo><mrow><mstyle mathcolor="#378ADD"><mrow><msub><mi>L</mi><mrow><mrow><mi>mod</mi></mrow></mrow></msub></mrow></mstyle></mrow><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#C2185B"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>1</mn></msub></mrow></mstyle></mrow></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#C2185B"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>1</mn></msub></mrow></mstyle></mrow><mo>+</mo><mrow><mstyle mathcolor="#E65100"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>2</mn></msub></mrow></mstyle></mrow></mrow></mstyle></mfrac></mstyle><mo>·</mo><mrow><mstyle mathcolor="#8B5E3C"><mrow><mi>i</mi></mrow></mstyle></mrow></mrow></math></div>
+        <div class="ad-f"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mrow><mi>Mod</mi></mrow><mo>=</mo><mrow><mstyle mathcolor="#378ADD"><mrow><mn>42</mn></mrow></mstyle></mrow><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#C2185B"><mrow><mo stretchy="false">(</mo><mn>10</mn><mo>−</mo><mn>6</mn><mo stretchy="false">)</mo></mrow></mstyle></mrow></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#C2185B"><mrow><mo stretchy="false">(</mo><mn>10</mn><mo>−</mo><mn>6</mn><mo stretchy="false">)</mo></mrow></mstyle></mrow><mo>+</mo><mrow><mstyle mathcolor="#E65100"><mrow><mo stretchy="false">(</mo><mn>10</mn><mo>−</mo><mn>7</mn><mo stretchy="false">)</mo></mrow></mstyle></mrow></mrow></mstyle></mfrac></mstyle><mo>·</mo><mrow><mstyle mathcolor="#8B5E3C"><mrow><mn>6</mn></mrow></mstyle></mrow></mrow></math></div>
+        <div class="ad-yaz">Ara sonuçlar: <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>1</mn></msub></mrow></math> + <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi mathvariant="normal">Δ</mi><mn>2</mn></msub></mrow></math> = 4 + 3 = <b>7</b>; 4 / 7 ≈ <b>0,571</b> (sınıfın ne kadarı); 0,571 · 6 ≈ <b>3,43</b> kg (alt sınırdan ne kadar yukarı).</div>
+        <div class="ad-f"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mrow><mi>Mod</mi></mrow><mo>=</mo><mn>42</mn><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>7</mn></mrow></mstyle></mfrac></mstyle><mo>·</mo><mn>6</mn></mrow></math></div>
+        <div class="ad-f"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mo>=</mo><mn>42</mn><mo>+</mo><mn>3,43</mn><mo>≈</mo><mn>45,4</mn><mtext> </mtext><mrow><mi>kg</mi></mrow></mrow></math></div>
+      </div>
+
+      <div class="ad-adim" data-adim="6">
+        <h5>6. adım: Yorum</h5>
+        <div class="ad-yaz"><b>Yorum:</b> En sık rastlanan günlük et kullanımı yaklaşık 45,4 kg'dır. Mod, mod sınıfının ortasının (45) biraz üstünde: sonraki komşu (48-54, 7 gün) önceki komşudan (36-42, 6 gün) kalabalık.</div>
+        <div class="ad-yaz">Dikkat: mod bir kg değeridir (45,4); mod sınıfının frekansı (10) mod değildir.</div>
+      </div>
+
+      <div class="ad-gez"><button class="ad-geri">‹ Önceki adım</button><button class="ad-ileri">Sonraki adım ›</button></div>
     </div>
-    <p style="margin-top:1rem"><b>Deneyin:</b> Mod sınıfının komşularının frekanslarını değiştirin. Mod hangi tarafa kayıyor? (Gri kesikli çizgi sınıfın ortası, 45.)</p>
-    <div class="controls"><label>36-42 sınıfı: <b id="mk-a">6</b></label><input type="range" id="mk-sa" min="0" max="9" value="6"><label>48-54 sınıfı: <b id="mk-b">7</b></label><input type="range" id="mk-sb" min="0" max="9" value="7"></div>
-    <div class="chart-wrap-sm"><canvas id="mk-ch"></canvas></div>
-    <div class="info-box" id="mk-acik"></div>
   </div>
 </section>
 
@@ -554,13 +706,83 @@
     <div class="formula"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mrow><mi>Medyan</mi></mrow><mo>=</mo><msub><mi>L</mi><mrow><mrow><mi>med</mi></mrow></mrow></msub><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>2</mn></mrow></mstyle></mfrac></mstyle><mo>−</mo><msub><mi>f</mi><mi>l</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><msub><mi>f</mi><mrow><mrow><mi>med</mi></mrow></mrow></msub></mrow></mstyle></mfrac></mstyle><mo>·</mo><mi>i</mi></mrow></math></div>
     <p class="note"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>L</mi><mrow><mrow><mi>med</mi></mrow></mrow></msub></mrow></math>: medyan sınıfının alt sınırı · <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>f</mi><mi>l</mi></msub></mrow></math>: medyan sınıfından bir önceki sınıfın kümülatif frekansı · <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>f</mi><mrow><mrow><mi>med</mi></mrow></mrow></msub></mrow></math>: medyan sınıfının frekansı · <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mi>i</mi></mrow></math>: medyan sınıfının sınıf aralığı</p>
     <div class="soru"><b>Örnek.</b> İftar çadırı verisinde günlük kullanılan et miktarının medyanını hesaplayınız.</div>
-    <div class="cozum" data-cozum>
-      <button class="cz-btn">Çözümü göster (adım adım)</button> <button class="cz-hep">Tümü</button>
-      <div class="adim" data-olc>Kümülatif frekanslar: 2, 8, 18, 25, 29, 30</div>
-      <div class="adim" data-olc><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>2</mn></mrow></mstyle></mfrac></mstyle><mo>=</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>30</mn></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>2</mn></mrow></mstyle></mfrac></mstyle><mo>=</mo><mn>15</mn></mrow></math> → 15. gün 42-48 sınıfında (8 &lt; 15 ≤ 18)</div>
-      <div class="adim" data-olc><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>L</mi><mrow><mrow><mi>med</mi></mrow></mrow></msub><mo>=</mo><mn>42</mn><mo>,</mo><mspace width="1em" /><msub><mi>f</mi><mi>l</mi></msub><mo>=</mo><mn>8</mn><mo>,</mo><mspace width="1em" /><msub><mi>f</mi><mrow><mrow><mi>med</mi></mrow></mrow></msub><mo>=</mo><mn>10</mn><mo>,</mo><mspace width="1em" /><mi>i</mi><mo>=</mo><mn>6</mn></mrow></math></div>
-      <div class="adim" data-olc><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mrow><mi>Medyan</mi></mrow><mo>=</mo><mn>42</mn><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>15</mn><mo>−</mo><mn>8</mn></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>10</mn></mrow></mstyle></mfrac></mstyle><mo>·</mo><mn>6</mn><mo>=</mo><mn>46,2</mn><mtext> </mtext><mrow><mi>kg</mi></mrow></mrow></math></div>
-      <div class="adim" data-olc><b>Yorum:</b> Günlerin yarısında 46,2 kg'dan az, yarısında fazla et kullanılmıştır. Ortalama (46,6), medyan (46,2) ve mod (45,4) birbirine yakın: dağılım aşağı yukarı simetrik.</div>
+    <div class="ad-kutu" data-adimli id="md-kap">
+      <div class="ad-pano">
+        <div class="ad-hucre" data-anahtar="n2" data-adim="1" data-sor style="--r:#c97d0c"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>2</mn></mrow></mstyle></mfrac></mstyle></mrow></math> (sıra)</span><b>?</b><i>1. adım</i></div>
+        <div class="ad-hucre" data-anahtar="sinif" data-adim="2" data-sor style="--r:#028090"><span>Medyan sınıfı</span><b>?</b><i>2. adım</i></div>
+        <div class="ad-hucre" data-anahtar="L" data-adim="3" data-sor style="--r:#378ADD"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>L</mi><mrow><mrow><mi>med</mi></mrow></mrow></msub></mrow></math> alt sınır</span><b>?</b><i>3. adım</i></div>
+        <div class="ad-hucre" data-anahtar="fl" data-adim="3" data-sor style="--r:#7F77DD"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>f</mi><mi>l</mi></msub></mrow></math> önceki kümülatif</span><b>?</b><i>3. adım</i></div>
+        <div class="ad-hucre" data-anahtar="fmed" data-adim="3" data-sor style="--r:#1D9E75"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>f</mi><mrow><mrow><mi>med</mi></mrow></mrow></msub></mrow></math> sınıf frekansı</span><b>?</b><i>3. adım</i></div>
+        <div class="ad-hucre" data-anahtar="i" data-adim="3" data-sor style="--r:#8B5E3C"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mi>i</mi></mrow></math> sınıf aralığı</span><b>?</b><i>3. adım</i></div>
+        <div class="ad-hucre" data-anahtar="med" data-adim="5" style="--r:#1E2D5E"><span>Medyan (kg)</span><b>?</b><i>5. adım</i></div>
+      </div>
+      <div class="ad-adimlar"></div>
+
+      <div class="ad-adim" data-adim="1">
+        <h5>1. adım: Medyan kaçıncı gün?</h5>
+        <div class="tw"><table class="md-yatay">
+          <tr><th>Sınıf (kg)</th><th>30-36</th><th>36-42</th><th>42-48</th><th>48-54</th><th>54-60</th><th>60-66</th><th><span class="uzun">Toplam</span><span class="kisa">Σ</span></th></tr>
+          <tr><td>f<sub>i</sub> (gün)</td><td>2</td><td>6</td><td>10</td><td>7</td><td>4</td><td>1</td><td><b>30</b></td></tr>
+        </table></div>
+        <div class="ad-yaz">Medyan, 30 günü et miktarına göre sıraladığımızda <b>tam ortadaki</b> günün değeridir: günlerin yarısı ondan az, yarısı ondan fazla. Gün sayısı n = <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></math> = 30. Sınıflanmış seride günlerin tek tek değerlerini bilmeyiz; et miktarı sürekli bir değişkendir ve 30 günü 30-66 kg aralığına yayılmış bir bütün gibi düşünürüz. Bu bütünü iki eşit parçaya bölen sıra <span class="ad-r" style="--r:#c97d0c"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>2</mn></mrow></mstyle></mfrac></mstyle></mrow></math></span>'dir; basit serideki (n + 1)/2 kuralı burada kullanılmaz.</div>
+        <div class="ad-giris" id="md-s1"><label>Önce siz bulun: <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>2</mn></mrow></mstyle></mfrac></mstyle></mrow></math> = <input data-alan="n2" inputmode="decimal"></label>
+          <button class="ad-kontrol">Kontrol et</button><button class="ad-goster">Cevabı göster</button><div class="ad-gb"></div></div>
+      </div>
+
+      <div class="ad-adim" data-adim="2"><h5>2. adım: 15. gün hangi sınıfta? Kümülatif frekans</h5></div>
+      <div class="ad-adim" data-adim="3"><h5>3. adım: Formülün dört değerini tablodan okuyun</h5></div>
+      <div class="ad-adim" data-adim="2,3">
+        <div class="ad-giris" id="md-s2a">
+          <div class="tw"><table class="md-yatay" id="md-tablo">
+            <tr><th>Sınıf (kg)</th><th data-k="0">30-36</th><th data-k="1">36-42</th><th data-k="2">42-48</th><th data-k="3">48-54</th><th data-k="4">54-60</th><th data-k="5">60-66</th></tr>
+            <tr><td>f<sub>i</sub> (gün)</td><td data-k="0">2</td><td data-k="1">6</td><td data-k="2">10</td><td data-k="3">7</td><td data-k="4">4</td><td data-k="5">1</td></tr>
+            <tr><td>Kümülatif frekans</td><td data-k="0">2</td><td data-k="1">8</td><td data-k="2"><input data-alan="k2" inputmode="decimal"></td><td data-k="3"><input data-alan="k3" inputmode="decimal"></td><td data-k="4"><input data-alan="k4" inputmode="decimal"></td><td data-k="5"><input data-alan="k5" inputmode="decimal"></td></tr>
+          </table></div>
+          <div class="md-yalniz2">Kümülatif (birikimli) frekans: o sınıfın sonuna kadar geçen gün sayısı, önceki kümülatif + bu sınıfın frekansı (2, 2 + 6 = 8, …). Boş kutuları doldurun.
+            <button class="ad-kontrol">Kontrol et</button><button class="ad-goster">Cevabı göster</button><div class="ad-gb"></div></div>
+        </div>
+      </div>
+      <div class="ad-adim" data-adim="2">
+        <div class="ad-giris" id="md-s2b">Medyan sınıfı hangisi? <button class="ad-sec" data-sec="0">30-36</button><button class="ad-sec" data-sec="1">36-42</button><button class="ad-sec" data-sec="2">42-48</button><button class="ad-sec" data-sec="3">48-54</button><button class="ad-sec" data-sec="4">54-60</button><button class="ad-sec" data-sec="5">60-66</button>
+          <div class="ad-gb" id="md-s2b-gb"></div></div>
+      </div>
+      <div class="ad-adim" data-adim="3">
+        <div class="ad-giris" id="md-s3">
+          <label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>L</mi><mrow><mrow><mi>med</mi></mrow></mrow></msub></mrow></math> = <input data-alan="L" inputmode="decimal"></label>
+          <label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>f</mi><mi>l</mi></msub></mrow></math> = <input data-alan="fl" inputmode="decimal"></label>
+          <label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>f</mi><mrow><mrow><mi>med</mi></mrow></mrow></msub></mrow></math> = <input data-alan="fmed" inputmode="decimal"></label>
+          <label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mi>i</mi></mrow></math> = <input data-alan="i" inputmode="decimal"></label><br>
+          <button class="ad-kontrol">Kontrol et</button><button class="ad-goster">Cevabı göster</button><div class="ad-gb"></div></div>
+      </div>
+
+      <div class="ad-adim" data-adim="4">
+        <h5>4. adım: Neden bu formül? Sınıfın içine bakmak</h5>
+        <div class="ad-yaz">Ortalamada günler sınıf ortasında sayılıyordu; burada sınıf içine eşit yayıldıklarını varsayıyoruz: medyan sınıfının 10 günü 42 ile 48 kg arasına <b>eşit aralıklarla yayılmıştır</b>. O zaman kümülatif frekans 42 kg'da 8'den 48 kg'da 18'e <b>düz bir çizgiyle</b> çıkar (grafikte yeşil parça). 15. gün, sınıfın 10 gününün 7'ncisidir (15 − 8 = 7): sınıfın içinde <b>7/10</b> kadar ilerideyiz. Sınıf 6 kg genişliğinde olduğundan 15. güne karşılık gelen nokta <b>42 + (7/10) · 6</b> kg'dır.</div>
+        <div class="controls" style="margin:.4rem 0 0"><label>Sıra (kaçıncı gün): <b id="md-p-x">15</b></label><input type="range" id="md-p" min="0.5" max="30" step="0.5" value="15"></div>
+        <div class="ad-grafik" id="md-grafik"></div>
+        <div class="ad-yaz" id="md-p-acik" style="margin-top:.3rem"></div>
+      </div>
+
+      <div class="ad-adim" data-adim="5">
+        <h5>5. adım: Değerleri formüle yerleştirin</h5>
+        <div class="ad-f"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mrow><mi>Medyan</mi></mrow><mo>=</mo><mrow><mstyle mathcolor="#378ADD"><mrow><msub><mi>L</mi><mrow><mrow><mi>med</mi></mrow></mrow></msub></mrow></mstyle></mrow><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#c97d0c"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>2</mn></mrow></mstyle></mfrac></mstyle></mrow></mstyle></mrow><mo>−</mo><mrow><mstyle mathcolor="#7F77DD"><mrow><msub><mi>f</mi><mi>l</mi></msub></mrow></mstyle></mrow></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#1D9E75"><mrow><msub><mi>f</mi><mrow><mrow><mi>med</mi></mrow></mrow></msub></mrow></mstyle></mrow></mrow></mstyle></mfrac></mstyle><mo>·</mo><mrow><mstyle mathcolor="#8B5E3C"><mrow><mi>i</mi></mrow></mstyle></mrow></mrow></math></div>
+        <div class="ad-f"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mrow><mi>Medyan</mi></mrow><mo>=</mo><mrow><mstyle mathcolor="#378ADD"><mrow><mn>42</mn></mrow></mstyle></mrow><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#c97d0c"><mrow><mn>15</mn></mrow></mstyle></mrow><mo>−</mo><mrow><mstyle mathcolor="#7F77DD"><mrow><mn>8</mn></mrow></mstyle></mrow></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#1D9E75"><mrow><mn>10</mn></mrow></mstyle></mrow></mrow></mstyle></mfrac></mstyle><mo>·</mo><mrow><mstyle mathcolor="#8B5E3C"><mrow><mn>6</mn></mrow></mstyle></mrow></mrow></math></div>
+        <div class="ad-yaz">Ara sonuçlar: pay 15 − 8 = <b>7</b> gün (medyan sınıfının içinde 15. güne kadar geçen gün); 7 / 10 = <b>0,7</b> (sınıfın ne kadarı); 0,7 · 6 = <b>4,2</b> kg (alt sınırdan ne kadar yukarı).</div>
+        <div class="ad-f"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mrow><mi>Medyan</mi></mrow><mo>=</mo><mn>42</mn><mo>+</mo><mn>0,7</mn><mo>·</mo><mn>6</mn><mo>=</mo><mn>42</mn><mo>+</mo><mn>4,2</mn><mo>=</mo><mn>46,2</mn><mtext> </mtext><mrow><mi>kg</mi></mrow></mrow></math></div>
+      </div>
+
+      <div class="ad-adim" data-adim="6">
+        <h5>6. adım: Yorum</h5>
+        <div class="stat-grid" style="margin-top:.3rem">
+          <div class="stat-card"><div class="label">Aritmetik ortalama (5. bölüm)</div><div class="value">46,6 kg</div></div>
+          <div class="stat-card"><div class="label">Medyan</div><div class="value">46,2 kg</div></div>
+          <div class="stat-card"><div class="label">Mod (8. bölüm)</div><div class="value">45,4 kg</div></div>
+        </div>
+        <div class="ad-yaz"><b>Yorum:</b> Günlerin yarısında 46,2 kg'dan az, yarısında fazla et kullanılmıştır. Ortalama (46,6), medyan (46,2) ve mod (45,4) birbirine yakın: dağılım aşağı yukarı simetrik.</div>
+        <div class="ad-yaz">Aynı yol kartillerde de kullanılır: sıra <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>2</mn></mrow></mstyle></mfrac></mstyle></mrow></math> yerine <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle></mfrac></mstyle></mrow></math> (7,5) ya da <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>3</mn><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle></mfrac></mstyle></mrow></math> (22,5) olur (10. bölüm).</div>
+      </div>
+
+      <div class="ad-gez"><button class="ad-geri">‹ Önceki adım</button><button class="ad-ileri">Sonraki adım ›</button></div>
     </div>
   </div>
 </section>
@@ -586,14 +808,93 @@
     <div class="formula"><span class="acik">1. Kartil</span> <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>Q</mi><mn>1</mn></msub><mo>=</mo><msub><mi>L</mi><mrow><msub><mi>Q</mi><mn>1</mn></msub></mrow></msub><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle></mfrac></mstyle><mo>−</mo><msub><mi>f</mi><mi>l</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><msub><mi>f</mi><mrow><msub><mi>Q</mi><mn>1</mn></msub></mrow></msub></mrow></mstyle></mfrac></mstyle><mo>·</mo><mi>i</mi></mrow></math></div>
     <div class="formula"><span class="acik">2. Kartil</span> <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>Q</mi><mn>2</mn></msub><mo>=</mo><mrow><mi>Medyan</mi></mrow><mo>=</mo><msub><mi>L</mi><mrow><msub><mi>Q</mi><mn>2</mn></msub></mrow></msub><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>2</mn></mrow></mstyle></mfrac></mstyle><mo>−</mo><msub><mi>f</mi><mi>l</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><msub><mi>f</mi><mrow><msub><mi>Q</mi><mn>2</mn></msub></mrow></msub></mrow></mstyle></mfrac></mstyle><mo>·</mo><mi>i</mi></mrow></math></div>
     <div class="formula"><span class="acik">3. Kartil</span> <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>Q</mi><mn>3</mn></msub><mo>=</mo><msub><mi>L</mi><mrow><msub><mi>Q</mi><mn>3</mn></msub></mrow></msub><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>3</mn><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle></mfrac></mstyle><mo>−</mo><msub><mi>f</mi><mi>l</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><msub><mi>f</mi><mrow><msub><mi>Q</mi><mn>3</mn></msub></mrow></msub></mrow></mstyle></mfrac></mstyle><mo>·</mo><mi>i</mi></mrow></math></div>
-    <div class="soru"><b>Örnek.</b> İftar çadırı verisinde günlük kullanılan et miktarının 1. ve 3. kartillerini hesaplayınız.</div>
-    <div class="cozum" data-cozum>
-      <button class="cz-btn">Çözümü göster (adım adım)</button> <button class="cz-hep">Tümü</button>
-      <div class="adim" data-olc>Kümülatif frekanslar: 2, 8, 18, 25, 29, 30</div>
-      <div class="adim" data-olc><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle></mfrac></mstyle><mo>=</mo><mn>7,5</mn></mrow></math> → <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>Q</mi><mn>1</mn></msub></mrow></math> sınıfı 36-42; <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>3</mn><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle></mfrac></mstyle><mo>=</mo><mn>22,5</mn></mrow></math> → <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>Q</mi><mn>3</mn></msub></mrow></math> sınıfı 48-54</div>
-      <div class="adim" data-olc><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>Q</mi><mn>1</mn></msub><mo>=</mo><mn>36</mn><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>7,5</mn><mo>−</mo><mn>2</mn></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>6</mn></mrow></mstyle></mfrac></mstyle><mo>·</mo><mn>6</mn><mo>=</mo><mn>41,5</mn><mtext> </mtext><mrow><mi>kg</mi></mrow></mrow></math></div>
-      <div class="adim" data-olc><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>Q</mi><mn>3</mn></msub><mo>=</mo><mn>48</mn><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>22,5</mn><mo>−</mo><mn>18</mn></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>7</mn></mrow></mstyle></mfrac></mstyle><mo>·</mo><mn>6</mn><mo>≈</mo><mn>51,9</mn><mtext> </mtext><mrow><mi>kg</mi></mrow></mrow></math></div>
-      <div class="adim" data-olc><b>Yorum:</b> Günlerin ortadaki yarısında kullanılan et 41,5 ile 51,9 kg arasındadır.</div>
+    <div class="soru"><b>Örnek.</b> İftar çadırı verisinde günlük kullanılan et miktarının 1. ve 3. kartillerini hesaplayınız. <i>Medyanla (9. bölüm) aynı yol: yalnız sıra değişir.</i></div>
+    <div class="ad-kutu" data-adimli id="ka-kap">
+      <div class="ka-sat"><b>Q₁</b><div class="ad-pano">
+        <div class="ad-hucre" data-anahtar="s1" data-adim="1" data-sor style="--r:#c97d0c"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle></mfrac></mstyle></mrow></math> (Q₁ sırası)</span><b>?</b><i>1. adım</i></div>
+        <div class="ad-hucre" data-anahtar="c1" data-adim="2" data-sor style="--r:#028090"><span>Q₁ sınıfı</span><b>?</b><i>2. adım</i></div>
+        <div class="ad-hucre" data-anahtar="L1" data-adim="3" data-sor style="--r:#378ADD"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>L</mi><mrow><msub><mi>Q</mi><mn>1</mn></msub></mrow></msub></mrow></math> alt sınır</span><b>?</b><i>3. adım</i></div>
+        <div class="ad-hucre" data-anahtar="fl1" data-adim="3" data-sor style="--r:#7F77DD"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>f</mi><mi>l</mi></msub></mrow></math> önceki kümülatif</span><b>?</b><i>3. adım</i></div>
+        <div class="ad-hucre" data-anahtar="f1" data-adim="3" data-sor style="--r:#1D9E75"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>f</mi><mrow><msub><mi>Q</mi><mn>1</mn></msub></mrow></msub></mrow></math> sınıf frekansı</span><b>?</b><i>3. adım</i></div>
+        <div class="ad-hucre" data-anahtar="i1" data-adim="3" data-sor style="--r:#8B5E3C"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mi>i</mi></mrow></math> sınıf aralığı</span><b>?</b><i>3. adım</i></div>
+        <div class="ad-hucre" data-anahtar="q1" data-adim="5" style="--r:#1E2D5E"><span>Q₁ (kg)</span><b>?</b><i>5. adım</i></div>
+      </div></div>
+      <div class="ka-sat"><b>Q₃</b><div class="ad-pano">
+        <div class="ad-hucre" data-anahtar="s3" data-adim="1" data-sor style="--r:#c97d0c"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>3</mn><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle></mfrac></mstyle></mrow></math> (Q₃ sırası)</span><b>?</b><i>1. adım</i></div>
+        <div class="ad-hucre" data-anahtar="c3" data-adim="2" data-sor style="--r:#028090"><span>Q₃ sınıfı</span><b>?</b><i>2. adım</i></div>
+        <div class="ad-hucre" data-anahtar="L3" data-adim="3" data-sor style="--r:#378ADD"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>L</mi><mrow><msub><mi>Q</mi><mn>3</mn></msub></mrow></msub></mrow></math> alt sınır</span><b>?</b><i>3. adım</i></div>
+        <div class="ad-hucre" data-anahtar="fl3" data-adim="3" data-sor style="--r:#7F77DD"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>f</mi><mi>l</mi></msub></mrow></math> önceki kümülatif</span><b>?</b><i>3. adım</i></div>
+        <div class="ad-hucre" data-anahtar="f3" data-adim="3" data-sor style="--r:#1D9E75"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>f</mi><mrow><msub><mi>Q</mi><mn>3</mn></msub></mrow></msub></mrow></math> sınıf frekansı</span><b>?</b><i>3. adım</i></div>
+        <div class="ad-hucre" data-anahtar="i3" data-adim="3" data-sor style="--r:#8B5E3C"><span><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mi>i</mi></mrow></math> sınıf aralığı</span><b>?</b><i>3. adım</i></div>
+        <div class="ad-hucre" data-anahtar="q3" data-adim="5" style="--r:#1E2D5E"><span>Q₃ (kg)</span><b>?</b><i>5. adım</i></div>
+      </div></div>
+      <div class="ad-adimlar"></div>
+
+      <div class="ad-adim" data-adim="1"><h5>1. adım: Q₁ ve Q₃ kaçıncı gün?</h5></div>
+      <div class="ad-adim" data-adim="2"><h5>2. adım: 7,5. ve 22,5. gün hangi sınıfta?</h5></div>
+      <div class="ad-adim" data-adim="3"><h5>3. adım: İki formülün değerlerini tablodan okuyun</h5></div>
+      <div class="ad-adim" data-adim="1,2,3">
+        <div class="tw"><table class="md-yatay" id="ka-tablo">
+          <tr><th>Sınıf (kg)</th><th data-k="0">30-36</th><th data-k="1">36-42</th><th data-k="2">42-48</th><th data-k="3">48-54</th><th data-k="4">54-60</th><th data-k="5">60-66</th></tr>
+          <tr><td>f<sub>i</sub> (gün)</td><td data-k="0">2</td><td data-k="1">6</td><td data-k="2">10</td><td data-k="3">7</td><td data-k="4">4</td><td data-k="5">1</td></tr>
+          <tr><td>Kümülatif frekans</td><td data-k="0">2</td><td data-k="1">8</td><td data-k="2">18</td><td data-k="3">25</td><td data-k="4">29</td><td data-k="5">30</td></tr>
+        </table></div>
+      </div>
+      <div class="ad-adim" data-adim="1">
+        <div class="ad-yaz">Q₂ medyandır: sırası <math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>2</mn></mrow></mstyle></mfrac></mstyle></mrow></math> = 15 (9. bölüm). Q₁ günlerin <b>dörtte birini</b>, Q₃ <b>dörtte üçünü</b> geride bırakır: sıraları <span class="ad-r" style="--r:#c97d0c"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle></mfrac></mstyle></mrow></math></span> ve <span class="ad-r" style="--r:#c97d0c"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>3</mn><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle></mfrac></mstyle></mrow></math></span>. Medyandaki gibi sınıflanmış seride (n + 1) kullanılmaz ve sıra kesirli kalabilir.</div>
+        <div class="ad-giris" id="ka-s1"><label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle></mfrac></mstyle></mrow></math> = <input data-alan="s1" inputmode="decimal"></label>
+          <label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>3</mn><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle></mfrac></mstyle></mrow></math> = <input data-alan="s3" inputmode="decimal"></label><br>
+          <button class="ad-kontrol">Kontrol et</button><button class="ad-goster">Cevabı göster</button><div class="ad-gb"></div></div>
+      </div>
+      <div class="ad-adim" data-adim="2">
+        <div class="ad-giris" id="ka-s2a">Q₁ sınıfı (7,5. gün)? <button class="ad-sec" data-sec="0">30-36</button><button class="ad-sec" data-sec="1">36-42</button><button class="ad-sec" data-sec="2">42-48</button><button class="ad-sec" data-sec="3">48-54</button><button class="ad-sec" data-sec="4">54-60</button><button class="ad-sec" data-sec="5">60-66</button>
+          <div class="ad-gb" id="ka-s2a-gb"></div></div>
+        <div class="ad-giris" id="ka-s2b">Q₃ sınıfı (22,5. gün)? <button class="ad-sec" data-sec="0">30-36</button><button class="ad-sec" data-sec="1">36-42</button><button class="ad-sec" data-sec="2">42-48</button><button class="ad-sec" data-sec="3">48-54</button><button class="ad-sec" data-sec="4">54-60</button><button class="ad-sec" data-sec="5">60-66</button>
+          <div class="ad-gb" id="ka-s2b-gb"></div></div>
+      </div>
+      <div class="ad-adim" data-adim="3">
+        <div class="ad-giris" id="ka-s3a"><b>Q₁:</b> <label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>L</mi><mrow><msub><mi>Q</mi><mn>1</mn></msub></mrow></msub></mrow></math> = <input data-alan="L1" inputmode="decimal"></label>
+          <label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>f</mi><mi>l</mi></msub></mrow></math> = <input data-alan="fl1" inputmode="decimal"></label>
+          <label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>f</mi><mrow><msub><mi>Q</mi><mn>1</mn></msub></mrow></msub></mrow></math> = <input data-alan="f1" inputmode="decimal"></label>
+          <label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mi>i</mi></mrow></math> = <input data-alan="i1" inputmode="decimal"></label>
+          <button class="ad-kontrol">Kontrol et</button><button class="ad-goster">Cevabı göster</button><div class="ad-gb"></div></div>
+        <div class="ad-giris" id="ka-s3b"><b>Q₃:</b> <label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>L</mi><mrow><msub><mi>Q</mi><mn>3</mn></msub></mrow></msub></mrow></math> = <input data-alan="L3" inputmode="decimal"></label>
+          <label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>f</mi><mi>l</mi></msub></mrow></math> = <input data-alan="fl3" inputmode="decimal"></label>
+          <label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>f</mi><mrow><msub><mi>Q</mi><mn>3</mn></msub></mrow></msub></mrow></math> = <input data-alan="f3" inputmode="decimal"></label>
+          <label><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><mi>i</mi></mrow></math> = <input data-alan="i3" inputmode="decimal"></label>
+          <button class="ad-kontrol">Kontrol et</button><button class="ad-goster">Cevabı göster</button><div class="ad-gb"></div></div>
+      </div>
+
+      <div class="ad-adim" data-adim="4">
+        <h5>4. adım: Neden bu formül? Aynı kümülatif çizgi, iki sıra</h5>
+        <div class="ad-yaz">Medyandaki varsayım burada da geçerli: her sınıfın günleri sınıf aralığına eşit yayılmıştır, kümülatif frekans sınıf içinde düz çizgiyle artar. 7,5. gün 36-42 sınıfının 6 gününden 5,5'incisidir; 22,5. gün 48-54 sınıfının 7 gününden 4,5'incisidir. İki nokta arasında 22,5 − 7,5 = 15 gün, yani günlerin <b>ortadaki %50</b>'si kalır.</div>
+        <div class="ad-grafik" id="ka-grafik"></div>
+      </div>
+
+      <div class="ad-adim" data-adim="5">
+        <h5>5. adım: Değerleri formüllere yerleştirin</h5>
+        <div class="ka-iki"><div>
+        <div class="ad-f"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>Q</mi><mn>1</mn></msub><mo>=</mo><mrow><mstyle mathcolor="#378ADD"><mrow><msub><mi>L</mi><mrow><msub><mi>Q</mi><mn>1</mn></msub></mrow></msub></mrow></mstyle></mrow><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#c97d0c"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle></mfrac></mstyle></mrow></mstyle></mrow><mo>−</mo><mrow><mstyle mathcolor="#7F77DD"><mrow><msub><mi>f</mi><mi>l</mi></msub></mrow></mstyle></mrow></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#1D9E75"><mrow><msub><mi>f</mi><mrow><msub><mi>Q</mi><mn>1</mn></msub></mrow></msub></mrow></mstyle></mrow></mrow></mstyle></mfrac></mstyle><mo>·</mo><mrow><mstyle mathcolor="#8B5E3C"><mrow><mi>i</mi></mrow></mstyle></mrow></mrow></math></div>
+        <div class="ad-f"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>Q</mi><mn>1</mn></msub><mo>=</mo><mrow><mstyle mathcolor="#378ADD"><mrow><mn>36</mn></mrow></mstyle></mrow><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#c97d0c"><mrow><mn>7,5</mn></mrow></mstyle></mrow><mo>−</mo><mrow><mstyle mathcolor="#7F77DD"><mrow><mn>2</mn></mrow></mstyle></mrow></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#1D9E75"><mrow><mn>6</mn></mrow></mstyle></mrow></mrow></mstyle></mfrac></mstyle><mo>·</mo><mrow><mstyle mathcolor="#8B5E3C"><mrow><mn>6</mn></mrow></mstyle></mrow><mo>=</mo><mn>36</mn><mo>+</mo><mn>5,5</mn><mo>=</mo><mn>41,5</mn><mtext> </mtext><mrow><mi>kg</mi></mrow></mrow></math></div>
+        <div class="ad-yaz">Ara sonuçlar: 7,5 − 2 = <b>5,5</b> gün; 5,5 / 6 ≈ <b>0,917</b>; 5,5 / 6 · 6 = <b>5,5</b> kg (frekans ile aralık ikisi de 6 olduğundan 5,5 gün 5,5 kg'a denk gelir).</div>
+        </div><div>
+        <div class="ad-f"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>Q</mi><mn>3</mn></msub><mo>=</mo><mrow><mstyle mathcolor="#378ADD"><mrow><msub><mi>L</mi><mrow><msub><mi>Q</mi><mn>3</mn></msub></mrow></msub></mrow></mstyle></mrow><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#c97d0c"><mrow><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>3</mn><mo>∑</mo><msub><mi>f</mi><mi>i</mi></msub></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mn>4</mn></mrow></mstyle></mfrac></mstyle></mrow></mstyle></mrow><mo>−</mo><mrow><mstyle mathcolor="#7F77DD"><mrow><msub><mi>f</mi><mi>l</mi></msub></mrow></mstyle></mrow></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#1D9E75"><mrow><msub><mi>f</mi><mrow><msub><mi>Q</mi><mn>3</mn></msub></mrow></msub></mrow></mstyle></mrow></mrow></mstyle></mfrac></mstyle><mo>·</mo><mrow><mstyle mathcolor="#8B5E3C"><mrow><mi>i</mi></mrow></mstyle></mrow></mrow></math></div>
+        <div class="ad-f"><math xmlns="http://www.w3.org/1998/Math/MathML" displaystyle="true"><mrow><msub><mi>Q</mi><mn>3</mn></msub><mo>=</mo><mrow><mstyle mathcolor="#378ADD"><mrow><mn>48</mn></mrow></mstyle></mrow><mo>+</mo><mstyle displaystyle="true" scriptlevel="0"><mfrac><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#c97d0c"><mrow><mn>22,5</mn></mrow></mstyle></mrow><mo>−</mo><mrow><mstyle mathcolor="#7F77DD"><mrow><mn>18</mn></mrow></mstyle></mrow></mrow></mstyle><mstyle displaystyle="true" scriptlevel="0"><mrow><mrow><mstyle mathcolor="#1D9E75"><mrow><mn>7</mn></mrow></mstyle></mrow></mrow></mstyle></mfrac></mstyle><mo>·</mo><mrow><mstyle mathcolor="#8B5E3C"><mrow><mn>6</mn></mrow></mstyle></mrow><mo>≈</mo><mn>51,9</mn><mtext> </mtext><mrow><mi>kg</mi></mrow></mrow></math></div>
+        <div class="ad-yaz">Ara sonuçlar: 22,5 − 18 = <b>4,5</b> gün; 4,5 / 7 ≈ <b>0,643</b>; 0,643 · 6 ≈ <b>3,86</b> kg; 48 + 3,86 = 51,86 ≈ <b>51,9</b> kg.</div>
+        </div></div>
+      </div>
+
+      <div class="ad-adim" data-adim="6">
+        <h5>6. adım: Yorum</h5>
+        <div class="stat-grid" style="margin-top:.3rem">
+          <div class="stat-card"><div class="label">Q₁</div><div class="value">41,5 kg</div></div>
+          <div class="stat-card"><div class="label">Q₂ = Medyan (9. bölüm)</div><div class="value">46,2 kg</div></div>
+          <div class="stat-card"><div class="label">Q₃</div><div class="value">51,9 kg</div></div>
+        </div>
+        <div class="ad-yaz"><b>Yorum:</b> Günlerin ortadaki yarısında kullanılan et 41,5 ile 51,9 kg arasındadır. Günlerin dörtte birinde 41,5 kg'dan az, dörtte birinde 51,9 kg'dan fazla et kullanılmıştır; sıra Q₁ &lt; medyan &lt; Q₃.</div>
+      </div>
+
+      <div class="ad-gez"><button class="ad-geri">‹ Önceki adım</button><button class="ad-ileri">Sonraki adım ›</button></div>
     </div>
     <div class="warn-box"><b>Yazılım uyarısı:</b> Excel ve jamovi kartilleri farklı bir ara değer kuralıyla hesaplar; küçük veride sonuç biraz farklı çıkabilir (10 notluk örnekte Q₁ için 52,5 ya da 57,25 gibi). Tezde hangi yazılımı kullandığınızı belirtin.</div>
   </div>
@@ -714,8 +1015,26 @@ const sayi = s => parseFloat(String(s).replace(',', '.'));
 // kategorik eksende değer konumuna dikey çizgi: {x: sınıf indeksi cinsinden konum, renk, etiket}
 const dikey = { id: 'dikey', afterDatasetsDraw(ch, a, o) { (o.cizgiler || []).forEach(c => { const x = ch.scales.x.getPixelForValue(c.x), { top, bottom } = ch.chartArea, g = ch.ctx;
   g.save(); g.strokeStyle = c.renk; g.lineWidth = 2.5; g.setLineDash(c.kesik ? [6, 4] : []); g.beginPath(); g.moveTo(x, top); g.lineTo(x, bottom); g.stroke();
-  g.fillStyle = c.renk; g.font = 'bold 12px sans-serif'; g.textAlign = 'center'; g.fillText(c.etiket, x, top + 12 + (c.sat || 0) * 14); g.restore(); }); } };
+  g.font = 'bold 12px sans-serif'; g.textAlign = 'center'; const ey = top + 12 + (c.sat || 0) * 14;
+  if (c.zemin && c.etiket) { const w = g.measureText(c.etiket).width + 8; g.setLineDash([]); g.fillStyle = '#fff'; g.fillRect(x - w / 2, ey - 11, w, 15); g.strokeStyle = c.renk; g.lineWidth = 1; g.strokeRect(x - w / 2, ey - 11, w, 15); }
+  g.fillStyle = c.renk; g.fillText(c.etiket, x, ey); g.restore(); }); } };
 Chart.register(dikey);
+// SVG yazısı: o = yerleştirme önceliği (0 sabit engel, -1 hesaba katılmaz, küçük olan önce yerleşir). Sunumda yazı 16 px.
+function svgYazi(x, y, s, r, h = 'middle', ek = '', o = 5) {
+  const fs = document.body.classList.contains('sunum') ? 16 : 13;
+  return `<text x="${x}" y="${y}" fill="${r}" font-size="${fs}" text-anchor="${h}" data-o="${o}" ${ek}>${s}</text>`; }
+// Çakışan etiketleri ayırır: öncelik sırasıyla yerleştirir, çakışanı 14 px yukarı/aşağı kaydırır, yer yoksa gizler.
+// getBBox yalnız görünen SVG'de çalışır; çizimden hemen sonra çağrılır.
+function etiketYerlestir(svg) {
+  if (!svg || !svg.getBoundingClientRect().width) return;
+  const H = svg.viewBox.baseVal.height, yer = [], kes = (A, B) => A.x < B.x + B.width - 1 && B.x < A.x + A.width - 1 && A.y < B.y + B.height - 1 && B.y < A.y + A.height - 1;
+  [...svg.querySelectorAll('text[data-o]')].filter(t => t.dataset.o !== '-1').sort((a, b) => a.dataset.o - b.dataset.o).forEach(t => {
+    if (t.dataset.o === '0') { yer.push(t.getBBox()); return; }
+    const y0 = +t.getAttribute('y');
+    for (const d of [0, -14, 14, -28, 28]) { t.setAttribute('y', y0 + d); const b = t.getBBox();
+      if (b.y >= 0 && b.y + b.height <= H && !yer.some(x => kes(x, b))) { yer.push(b); return; } }
+    t.setAttribute('y', y0); t.style.display = 'none'; });
+}
 
 // ---------- adım adım çözüm ----------
 document.querySelectorAll('[data-cozum]').forEach(cz => {
@@ -779,9 +1098,9 @@ const MID = SINIF.map(([a, b]) => (a + b) / 2);
 doldur('et-tablo', 'et-durum', ['Sınıflar (kg)', 'fᵢ', 'mᵢ', 'mᵢfᵢ'], SAD.map((s, i) => [s, EF[i], '', '']),
   MID.map((m, i) => ({ 2: m, 3: m * EF[i] })), ['Toplam', 30, '', '1398'], '<b style="color:var(--green)">Hepsi doğru. Şimdi 1398 / 30 = ?</b>');
 const etKonum = v => (v - 30) / 6 - 0.5;   // kg değerinin sınıf ekseninde konumu
-function hist(id, f, cizgiler) {
+function hist(id, f, cizgiler, ymax) {
   ciz(id, { type: 'bar', data: { labels: SINIF.map(([a, b]) => `${a}-${b}`), datasets: [{ label: 'Gün sayısı', data: f, backgroundColor: '#9DC3E6', borderColor: C.navy, borderWidth: 1, barPercentage: 1, categoryPercentage: 1 }] },
-    options: { maintainAspectRatio: false, animation: false, plugins: { legend: { display: false }, dikey: { cizgiler } }, scales: { x: { title: { display: true, text: 'Günlük et (kg)' } }, y: { beginAtZero: true, title: { display: true, text: 'Gün' } } } } });
+    options: { maintainAspectRatio: false, animation: false, plugins: { legend: { display: false }, dikey: { cizgiler } }, scales: { x: { title: { display: true, text: 'Günlük et (kg)' } }, y: { beginAtZero: true, max: ymax, title: { display: true, text: 'Gün' } } } } });
 }
 hist('et-ch', EF, [{ x: etKonum(46.6), renk: C.red, etiket: 'x̄ = 46,6' }]);
 
@@ -821,11 +1140,68 @@ mdCiz(0);
 function mkCiz() {
   const a = +$('mk-sa').value, b = +$('mk-sb').value, f = [2, a, 10, b, 4, 1]; $('mk-a').textContent = a; $('mk-b').textContent = b;
   const d1 = 10 - a, d2 = 10 - b, mod = 42 + d1 / (d1 + d2) * 6;
-  hist('mk-ch', f, [{ x: etKonum(45), renk: C.gray, etiket: '', kesik: true }, { x: etKonum(mod), renk: C.orange, etiket: 'Mod = ' + tr(mod) }]);
+  hist('mk-ch', f, [{ x: etKonum(45), renk: C.gray, etiket: '', kesik: true }, { x: etKonum(mod), renk: C.orange, etiket: 'Mod = ' + tr(mod), zemin: true }], 12);  // etiket çubukların üstünde, beyaz zeminli
+  moBol(a, b);
   $('mk-acik').innerHTML = `Δ₁ = 10 − ${a} = ${d1}; Δ₂ = 10 − ${b} = ${d2}; Mod = 42 + ${d1}/${d1 + d2} · 6 = <b>${tr(mod, 2)} kg</b>. ` +
     (d1 > d2 ? 'Sonraki komşu daha kalabalık: mod sınıfın üst yarısına kaydı.' : d1 < d2 ? 'Önceki komşu daha kalabalık: mod sınıfın alt yarısına kaydı.' : 'Komşular eşit: mod tam sınıf ortasında (45).');
 }
 $('mk-sa').oninput = mkCiz; $('mk-sb').oninput = mkCiz; mkCiz();
+
+// ---------- 8: mod, sınıflanmış seri (adım adım kalıp; ortak adimKur/adimSor/adimSec 1. bölüm şablonunda) ----------
+// Kurgu: mod sınıfı (en yüksek frekans) → L_mod, i → Δ1, Δ2 → neden (mod kalabalık komşuya kayar, sınıf Δ1:Δ2 bölünür;
+// "Deneyin" kaydırıcıları burada) → formül renkli ve sayılarla → yorum. Sayılar sunumla aynı: 42 + 3,43 ≈ 45,4 kg.
+// Sınıfın Δ1 : Δ2 oranında bölünüşü (mkCiz çağırır; kaydırıcılarla birlikte değişir).
+function moBol(a, b) {
+  const kap = $('mo-grafik'); if (!kap) return;
+  const R1 = '#C2185B', R2 = '#E65100', d1 = 10 - a, d2 = 10 - b, mod = 42 + d1 / (d1 + d2) * 6;
+  const W = Math.round(Math.max(300, Math.min(520, kap.clientWidth || 420))), H = 244, x0 = 34, x1 = W - 18, X = kg => x0 + (kg - 36) / 18 * (x1 - x0), Y = f => 140 - f * 11.5;
+  const t = svgYazi;
+  let g = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Mod sınıfının Δ1 ve Δ2 oranında bölünüşü">`;
+  [[36, a, '#9DC3E6'], [42, 10, '#9DC3E6'], [48, b, '#9DC3E6']].forEach(([s, f, r]) => g += `<rect x="${X(s)}" y="${Y(f)}" width="${X(s + 6) - X(s)}" height="${Y(0) - Y(f)}" fill="${r}" stroke="#1E2D5E"/>` + t((X(s) + X(s + 6)) / 2, Y(f) - 4, `${f} gün`, '#1E2D5E', 'middle', '', 2));
+  // Δ1 önceki komşunun üstünde (sol), Δ2 sonraki komşunun üstünde (sağ): dar ekranda birbirine binmez.
+  g += `<line x1="${X(42) - 5}" x2="${X(42) - 5}" y1="${Y(a)}" y2="${Y(10)}" stroke="${R1}" stroke-width="4"/>` + t(X(42) - 10, Math.min((Y(a) + Y(10)) / 2 + 4, Y(a) - 20), `Δ₁ = ${d1}`, R1, 'end', 'font-weight="700"', 1);
+  g += `<line x1="${X(48) + 5}" x2="${X(48) + 5}" y1="${Y(b)}" y2="${Y(10)}" stroke="${R2}" stroke-width="4"/>` + t(X(48) + 10, Math.min((Y(b) + Y(10)) / 2 + 4, Y(b) - 20), `Δ₂ = ${d2}`, R2, 'start', 'font-weight="700"', 1);
+  g += `<line x1="${x0}" x2="${x1}" y1="${Y(0)}" y2="${Y(0)}" stroke="#94A3B8"/>` + [36, 42, 48, 54].map(s => t(X(s), Y(0) + 14, s, '#64748B', 'middle', '', 0)).join('');
+  // alt şerit: 42-48 sınıfı Δ1 : Δ2 oranında bölünür
+  const ys = 190;  // şerit eksen yazılarının altında: Mod etiketi 42/48 yazılarına binmez
+  g += `<rect x="${X(42)}" y="${ys}" width="${X(mod) - X(42)}" height="22" fill="${R1}"/><rect x="${X(mod)}" y="${ys}" width="${X(48) - X(mod)}" height="22" fill="${R2}"/>`;
+  if (X(mod) - X(42) > 34) g += t((X(42) + X(mod)) / 2, ys + 15, `${d1} pay`, '#fff', 'middle', 'font-weight="700"');
+  if (X(48) - X(mod) > 34) g += t((X(mod) + X(48)) / 2, ys + 15, `${d2} pay`, '#fff', 'middle', 'font-weight="700"');
+  g += `<line x1="${X(45)}" x2="${X(45)}" y1="${ys - 6}" y2="${ys + 28}" stroke="#94A3B8" stroke-width="2" stroke-dasharray="4 3"/>`;
+  g += t(X(42), ys + 40, '42', '#378ADD', 'middle', 'font-weight="700"', 0) + t(X(48), ys + 40, '48', '#378ADD', 'middle', 'font-weight="700"', 0) + t(X(mod), ys - 8, `Mod = ${tr(mod, 1)}`, '#1E2D5E', 'middle', 'font-weight="700"', 1);
+  kap.innerHTML = g + '</svg>'; etiketYerlestir(kap.querySelector('svg'));
+}
+const MO = adimKur($('mo-kap'), {
+  adlar: ['Mod sınıfı', 'L<sub>mod</sub> ve i', 'Δ₁ ve Δ₂', 'Neden bu formül?', 'Hesap', 'Yorum'],
+  pano: { sinif: '42-48', L: '42', i: '6', d1: '4', d2: '3', mod: '45,4' },
+  degisti: (a, A) => { const hl = a >= 2 || A.acik.has('sinif');
+    document.querySelectorAll('#mo-tablo [data-k="2"]').forEach(c => c.classList.toggle('hl', hl));
+    document.querySelectorAll('#mo-tablo [data-k="1"]').forEach(c => c.classList.toggle('d1', a === 3));
+    document.querySelectorAll('#mo-tablo [data-k="3"]').forEach(c => c.classList.toggle('d2', a === 3));
+    if (a === 4) mkCiz(); } });
+adimSec(MO, $('mo-s1'), { adim: 1, dogru: '2', anahtar: 'sinif', gb: $('mo-s1-gb'),
+  sonra: () => document.querySelectorAll('#mo-tablo [data-k="2"]').forEach(c => c.classList.add('hl')),
+  mesajlar: { 0: 'Bu sınıfta yalnız 2 gün var. Mod sınıfı en çok günün düştüğü, yani frekansı en yüksek sınıftır.',
+    1: 'Bu sınıfta 6 gün var; 42-48 sınıfında daha çok gün (10) var.',
+    3: 'Bu sınıf 7 günle ikinci kalabalık sınıf. Sınıfların ortasına yakın olması onu mod sınıfı yapmaz; en kalabalık sınıf 42-48 (10 gün).',
+    4: 'Bu sınıfta 4 gün var. Mod sınıfı frekansı en yüksek sınıftır.',
+    5: 'Bu son sınıf, yalnız 1 gün. Kümülatif (birikimli) frekansı, yani bu sınıfa kadar bütün günler (30) en büyüktür ama mod kümülatife değil sınıfın <b>kendi</b> frekansına bakar.' },
+  tamam: 'Doğru: <b>42-48</b>, frekansı en yüksek sınıf (f = 10). Mod bu sınıfın içinde bir değerdir.' });
+adimSor(MO, $('mo-s2'), { adim: 2, alanlar: [
+  { alan: 'L', anahtar: 'L', ad: 'L<sub>mod</sub>', dogru: 42, hatalar: [[45, 'bu mod sınıfının orta noktası. L<sub>mod</sub> sınıfın <b>alt sınırıdır</b>.'], [48, 'bu mod sınıfının üst sınırı. L<sub>mod</sub> sınıfın <b>alt sınırıdır</b>.'],
+    [10, 'bu mod sınıfının frekansı (gün sayısı). L<sub>mod</sub> bir kg değeridir: sınıfın alt sınırı.'], [36, 'bu bir önceki sınıfın alt sınırı. Mod sınıfı 42-48.']], genel: 'L<sub>mod</sub> mod sınıfının (42-48) alt sınırıdır.' },
+  { alan: 'i', anahtar: 'i', ad: 'i', dogru: 6, hatalar: [[5, 'sınıf aralığı üst sınır eksi alt sınırdır: 48 − 42.'], [42, 'i bir sınır değil, sınıfın <b>genişliğidir</b>: üst sınır − alt sınır.'], [48, 'i bir sınır değil, sınıfın <b>genişliğidir</b>: üst sınır − alt sınır.'],
+    [10, 'bu mod sınıfının frekansı. i sınıfın genişliğidir (kg).'], [36, 'bu bütün sınıfların yayıldığı aralık (66 − 30). i yalnız mod sınıfının genişliğidir.'], [3, 'bu sınıf genişliğinin yarısı. i sınıfın bütün genişliğidir.']], genel: 'i mod sınıfının sınıf aralığıdır (genişliği): üst sınır − alt sınır.' }],
+  tamam: 'Doğru. <b>L<sub>mod</sub> = 42</b> (mod sınıfının alt sınırı), <b>i = 48 − 42 = 6</b> kg.' });
+adimSor(MO, $('mo-s3'), { adim: 3, alanlar: [
+  { alan: 'd1', anahtar: 'd1', ad: 'Δ₁', dogru: 4, hatalar: [[3, 'bu Δ₂ (sonraki komşuyla fark). Δ₁ <b>önceki</b> komşuyla (36-42) farktır: 10 − 6.'], [6, 'bu önceki sınıfın frekansının kendisi. Δ₁ bir <b>farktır</b>: mod sınıfı frekansı − önceki sınıf frekansı.'],
+    [10, 'bu mod sınıfının frekansı. Δ₁ ondan önceki sınıfın frekansını çıkarınca kalan farktır.'], [2, 'kümülatif frekansla çıkardınız (10 − 8). Δ₁ sınıfların <b>kendi</b> frekanslarıyla hesaplanır: 10 − 6.'],
+    [-4, 'işaret ters: önceki frekanstan mod sınıfınınkini çıkardınız. Δ₁ = mod sınıfı frekansı − önceki sınıf frekansı (pozitif).'], [16, 'frekansları topladınız. Δ₁ bir farktır: 10 − 6.']], genel: 'Δ₁ = mod sınıfı frekansı − önceki sınıfın frekansı.' },
+  { alan: 'd2', anahtar: 'd2', ad: 'Δ₂', dogru: 3, hatalar: [[4, 'bu Δ₁ (önceki komşuyla fark). Δ₂ <b>sonraki</b> komşuyla (48-54) farktır: 10 − 7.'], [7, 'bu sonraki sınıfın frekansının kendisi. Δ₂ bir <b>farktır</b>: mod sınıfı frekansı − sonraki sınıf frekansı.'],
+    [10, 'bu mod sınıfının frekansı. Δ₂ ondan sonraki sınıfın frekansını çıkarınca kalan farktır.'], [-3, 'işaret ters: sonraki frekanstan mod sınıfınınkini çıkardınız. Δ₂ = mod sınıfı frekansı − sonraki sınıf frekansı (pozitif).'],
+    [17, 'frekansları topladınız. Δ₂ bir farktır: 10 − 7.'], [-7, 'kümülatif frekanslarla çıkardınız (18 − 25). Δ₂ sınıfların <b>kendi</b> frekanslarıyla hesaplanır: 10 − 7.']], genel: 'Δ₂ = mod sınıfı frekansı − sonraki sınıfın frekansı.' }],
+  tamam: 'Doğru. <b>Δ₁ = 10 − 6 = 4</b> (önceki komşu 36-42), <b>Δ₂ = 10 − 7 = 3</b> (sonraki komşu 48-54). Δ₂ daha küçük: sonraki komşunun frekansı mod sınıfınınkine daha yakın.' });
+addEventListener('resize', () => { if (MO.a === 4) moBol(+$('mk-sa').value, +$('mk-sb').value); });
 
 // ---------- 9: medyan ----------
 const VIZE = [30, 42, 56, 61, 68, 79, 82, 88, 90, 98];
@@ -853,6 +1229,92 @@ function mgCiz(i) {
 $('mg-sec').querySelectorAll('button').forEach(b => b.onclick = () => { $('mg-sec').querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b)); mgCiz(+b.dataset.i); });
 mgCiz(0);
 
+// ---------- 9: medyan, sınıflanmış seri (adım adım kalıp; ortak adimKur/adimSor/adimSec 1. bölüm şablonunda) ----------
+// Kurgu: sıra Σfᵢ/2 → kümülatif frekansla medyan sınıfı → L<sub>med</sub>, f<sub>l</sub>, f<sub>med</sub>, i panoya → neden bu formül (sınıf içinde
+// eşit yayılma, kümülatif frekans doğrusal) → formül renkli ve sayılarla → yorum. Sayılar sunumla aynı: 46,2 kg.
+const MD_KUM = EF.reduce((a, f) => (a.push((a.length ? a[a.length - 1] : 0) + f), a), []);   // 2, 8, 18, 25, 29, 30
+const MDR = { n2: '#c97d0c', sinif: '#028090', L: '#378ADD', fl: '#7F77DD', fmed: '#1D9E75', i: '#8B5E3C', med: '#1E2D5E' };
+// p'inci günün değeri: p'yi içeren sınıfta kümülatif frekansın doğrusal arttığı varsayımıyla (medyan, kartil formülü)
+function mdSira(p) { const k = Math.max(0, MD_KUM.findIndex(c => p <= c)), once = k ? MD_KUM[k - 1] : 0;
+  return { k, L: SINIF[k][0], fl: once, f: EF[k], deger: SINIF[k][0] + (p - once) / EF[k] * 6 }; }
+function mdGrafik() {
+  // Çizim genişliği kabın gerçek genişliği (320-560): yazılar telefonda da okunur boyda kalır.
+  const p = +$('md-p').value, S = mdSira(p), W = Math.round(Math.max(320, Math.min(560, $('md-grafik').clientWidth || 520))), H = 300, x0 = 46, x1 = W - 16, y0 = H - 40, y1 = 28;
+  const X = kg => x0 + (kg - 30) / 36 * (x1 - x0), Y = c => y0 - c / 30 * (y0 - y1);
+  const nok = [[30, 0], ...SINIF.map(([, b], k) => [b, MD_KUM[k]])], [a, b] = SINIF[S.k], v = S.deger;
+  const t = svgYazi;
+  let g = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Kümülatif frekans çizgisi ve medyanın konumu">`;
+  for (let c = 0; c <= 30; c += 5) g += `<line x1="${x0}" x2="${x1}" y1="${Y(c)}" y2="${Y(c)}" stroke="#eef1f5"/>` + (c ? t(x0 - 6, Y(c) + 4, c, '#64748B', 'end', '', 0) : '');
+  SINIF.forEach(([s]) => g += t(X(s), y0 + 16, s, '#64748B', 'middle', '', 0)); g += t(X(66), y0 + 16, 66, '#64748B', 'middle', '', 0);
+  g += t((x0 + x1) / 2, H - 4, 'Günlük et (kg)', '#64748B', 'middle', '', 0) + t(12, (y0 + y1) / 2, 'Kümülatif gün', '#64748B', 'middle', `transform="rotate(-90 12 ${(y0 + y1) / 2})"`, -1);
+  g += `<line x1="${x0}" x2="${x1}" y1="${y0}" y2="${y0}" stroke="#94A3B8"/><line x1="${x0}" x2="${x0}" y1="${y0}" y2="${y1}" stroke="#94A3B8"/>`;
+  // sınıfın kutusu: genişlik i, yükseklik f; köşegen = eşit yayılma varsayımı
+  g += `<rect x="${X(a)}" y="${Y(S.fl + S.f)}" width="${X(b) - X(a)}" height="${Y(S.fl) - Y(S.fl + S.f)}" fill="#E6F7F0" stroke="#1D9E75" stroke-dasharray="4 3"/>`;
+  g += `<polyline points="${nok.map(([kg, c]) => `${X(kg)},${Y(c)}`).join(' ')}" fill="none" stroke="#94A3B8" stroke-width="2"/>`;
+  g += `<line x1="${X(a)}" y1="${Y(S.fl)}" x2="${X(b)}" y2="${Y(S.fl + S.f)}" stroke="#1D9E75" stroke-width="4"/>`;
+  nok.forEach(([kg, c]) => g += `<circle cx="${X(kg)}" cy="${Y(c)}" r="3.5" fill="#1E2D5E"/>`);
+  // sıra çizgisi (yatay), değer çizgisi (dikey)
+  g += `<line x1="${x0}" x2="${X(v)}" y1="${Y(p)}" y2="${Y(p)}" stroke="${MDR.n2}" stroke-width="2" stroke-dasharray="6 4"/>`;
+  g += `<line x1="${X(v)}" x2="${X(v)}" y1="${Y(p)}" y2="${y0}" stroke="${MDR.med}" stroke-width="2" stroke-dasharray="6 4"/><circle cx="${X(v)}" cy="${Y(p)}" r="5.5" fill="${MDR.n2}"/>`;
+  // Etiket yerleri: f_l etiketi çizginin altında (eksene inerse üstünde); sıra etiketi küçük sırada yukarı, f_l etiketine binerse onun üstüne.
+  const flY = Y(S.fl) + 15 > y0 - 4 ? Y(S.fl) - 6 : Y(S.fl) + 15; let siraY = Math.min(Y(p) - 6, y0 - 40); if (S.fl && Math.abs(siraY - flY) < 14) siraY = flY - 16;
+  g += t(x0 + 4, siraY, `sıra ${trk(p, 1)}`, MDR.n2, 'start', 'font-weight="700"', 1);
+  // sınıf içi ölçüler: f<sub>l</sub> düzeyi, geçen gün (p − f<sub>l</sub>), f, i
+  const sag = X(b) + 6, sol = X(a) - 6;
+  g += `<line x1="${x0}" x2="${X(a)}" y1="${Y(S.fl)}" y2="${Y(S.fl)}" stroke="${MDR.fl}" stroke-width="1.5" stroke-dasharray="2 3"/>` + (S.fl === 0 ? '' : t(x0 + 4, flY, `f<tspan dy="4" font-size="10">l</tspan><tspan dy="-4"> = ${S.fl}</tspan>`, MDR.fl, 'start', 'font-weight="700"', 4));
+  g += `<line x1="${sag}" x2="${sag}" y1="${Y(S.fl)}" y2="${Y(S.fl + S.f)}" stroke="${MDR.fmed}" stroke-width="2"/>` + (S.k === SINIF.length - 1 ? t(X(b) - 2, Y(S.fl) + 16, `${S.f} gün`, MDR.fmed, 'end', 'font-weight="700"', 3)  // sağ uçtaki sınıf: kutunun altında
+    : t(sag + 4, (Y(S.fl) + Y(S.fl + S.f)) / 2 + 4, `${S.f} gün`, MDR.fmed, 'start', 'font-weight="700"', 3));
+  if (p - S.fl >= 1.5) g += `<line x1="${sol}" x2="${sol}" y1="${Y(S.fl)}" y2="${Y(p)}" stroke="${MDR.n2}" stroke-width="2"/>` + t(sol - 4, (Y(S.fl) + Y(p)) / 2 + 4, `${trk(p - S.fl, 1)} gün`, MDR.n2, 'end', 'font-weight="700"', 3);
+  g += `<line x1="${X(a)}" x2="${X(b)}" y1="${Y(S.fl + S.f) - 4}" y2="${Y(S.fl + S.f) - 4}" stroke="${MDR.i}" stroke-width="2"/>` + (S.k === SINIF.length - 1 ? t(X(b) - 2, Y(S.fl) + 31, `i = ${b - a} kg`, MDR.i, 'end', 'font-weight="700"', 4)  // sağ uçtaki sınıfta kutunun altında, sağa yaslı
+    : t((X(a) + X(b)) / 2, Math.max(y1 + 12, Y(S.fl + S.f) - 9), `i = ${b - a} kg`, MDR.i, 'middle', 'font-weight="700"', 4));
+  g += t(X(v), y0 - 6, `${tr(v, 1)} kg`, MDR.med, X(v) > x1 - 60 ? 'end' : 'start', `font-weight="700" dx="${X(v) > x1 - 60 ? -5 : 5}"`, 1);  // sağ uçta çizginin solunda
+  $('md-grafik').innerHTML = g + '</svg>'; etiketYerlestir($('md-grafik').querySelector('svg'));
+  $('md-p-x').textContent = trk(p, 1);
+  const ad = p === 15 ? ' = Σfᵢ/2: <b>medyan</b>' : p === 7.5 ? ' = Σfᵢ/4: <b>Q₁</b> (10. bölüm)' : p === 22.5 ? ' = 3Σfᵢ/4: <b>Q₃</b> (10. bölüm)' : '';
+  $('md-p-acik').innerHTML = `Sıra ${trk(p, 1)}${ad}. Bu gün ${a}-${b} sınıfında (kümülatif ${S.fl} → ${S.fl + S.f}). ` +
+    `${a} + (${trk(p, 1)} − ${S.fl}) / ${S.f} · 6 = ${a} + ${trk((p - S.fl) / S.f, 3)} · 6 = <b>${tr(v, 1)} kg</b>.` + (p === 15 ? '' : ' Medyan için sırayı 15\'e getirin.');
+}
+const MD = adimKur($('md-kap'), {
+  adlar: ['Kaçıncı gün?', 'Medyan sınıfı', 'Panoyu doldur', 'Neden bu formül?', 'Hesap', 'Yorum'],
+  pano: { n2: '15', sinif: '42-48', L: '42', fl: '8', fmed: '10', i: '6', med: '46,2' },
+  degisti: (a, A) => { const hl = a >= 3 || A.acik.has('sinif');
+    document.querySelectorAll('#md-tablo [data-k="2"]').forEach(c => c.classList.toggle('hl', hl)); if (a === 4) mdGrafik(); } });
+adimSor(MD, $('md-s1'), { adim: 1, alanlar: [{ alan: 'n2', anahtar: 'n2', ad: 'Σfᵢ/2', dogru: 15, hatalar: [
+    [30, 'bu toplam gün sayısı (n = Σfᵢ). Medyan ortadaki gündür: toplamın <b>yarısı</b>.'],
+    [15.5, '(n + 1)/2 basit seride, tek hacimde kullanılır. Sınıflanmış seride değişken süreklidir; 30 günü ikiye bölen sıra Σfᵢ/2\'dir. Formül de bu yüzden Σfᵢ/2 ile yazılır.'],
+    [16, 'n/2 + 1 basit seride, çift hacimde ikinci ortadaki gözlemdir. Sınıflanmış seride tek tek gözlem yoktur; sıra yalnız Σfᵢ/2\'dir.'],
+    [5, 'toplamı sınıf sayısına (6) böldünüz. Sınıflar değil günler sayılır: Σfᵢ = 30.'],
+    [3, 'sınıf sayısının yarısını aldınız. Sınıflar değil günler sayılır: Σfᵢ = 30.'],
+    [7.5, 'bu Σfᵢ/4, 1. kartilin sırası. Medyan ortadadır: Σfᵢ/2.'], [22.5, 'bu 3Σfᵢ/4, 3. kartilin sırası. Medyan ortadadır: Σfᵢ/2.']],
+  genel: 'önce gün sayısını bulun (frekansların toplamı), sonra ikiye bölün.' }],
+  tamam: 'Doğru: Σfᵢ/2 = 30/2 = <b>15</b>. Medyan, sıralı günlerin 15\'inin altında, 15\'inin üstünde kaldığı değerdir (kümülatif frekansın 15\'e ulaştığı nokta).' });
+adimSor(MD, $('md-s2a'), { adim: 2, alanlar: [2, 3, 4, 5].map(k => ({ alan: 'k' + k, ad: `${SINIF[k][0]}-${SINIF[k][1]} kümülatif`, dogru: MD_KUM[k], hatalar: [
+    [EF[k], `bu sınıfın kendi frekansı. Kümülatif frekans = önceki kümülatif + bu sınıfın frekansı: ${MD_KUM[k - 1]} + ${EF[k]}.`]],
+    genel: `önceki kümülatife (${MD_KUM[k - 1]}) bu sınıfın frekansını (${EF[k]}) ekleyin.` })),
+  tamam: 'Doğru. Kümülatif frekanslar: 2, 8, 18, 25, 29, 30. Son değer toplam gün sayısına (30) eşit olmalı: kendi kendinizi böyle denetleyebilirsiniz.' });
+adimSec(MD, $('md-s2b'), { adim: 2, dogru: '2', anahtar: 'sinif', gb: $('md-s2b-gb'),
+  sonra: () => document.querySelectorAll('#md-tablo [data-k="2"]').forEach(c => c.classList.add('hl')),
+  mesajlar: { 0: 'Bu sınıfın kümülatif frekansı 2: ilk 2 gün burada. 15. güne daha çok var (2 &lt; 15).',
+    1: 'Bu sınıfın kümülatif frekansı 8: ilk 8 gün bu sınıfın sonuna kadar. 15. gün henüz gelmedi (8 &lt; 15). Sık hata: 15\'e en yakın kümülatifi seçmek. Kümülatif frekansın 15\'e ilk kez ulaştığı ya da onu geçtiği sınıfa bakın.',
+    3: 'Bu sınıfın kümülatif frekansı 25. Ama 15. gün bundan önce geçildi: bir önceki sınıfta kümülatif 18\'e çıkıyor (15 ≤ 18).',
+    4: 'Bu sınıf dağılımın üst ucunda (kümülatif 29). Medyan sınıfı, kümülatif frekansın Σfᵢ/2 = 15\'e ilk ulaştığı sınıftır.',
+    5: 'Bu son sınıf (kümülatif 30, bütün günler). Medyan sınıfı, kümülatif frekansın Σfᵢ/2 = 15\'e ilk ulaştığı sınıftır.' },
+  tamam: 'Doğru: <b>42-48</b>. Kümülatif frekans bu sınıfta 8\'den 18\'e çıkıyor: <b>8 &lt; 15 ≤ 18</b>, yani 9. ile 18. günler bu sınıfta, 15. gün de onların arasında. Burada medyan sınıfı mod sınıfıyla (en yüksek frekans) aynı çıktı; bu bir rastlantıdır, medyan sınıfı her zaman kümülatif frekansla bulunur.' });
+adimSor(MD, $('md-s3'), { adim: 3, alanlar: [
+  { alan: 'L', anahtar: 'L', ad: 'L<sub>med</sub>', dogru: 42, hatalar: [[45, 'bu medyan sınıfının orta noktası. L<sub>med</sub> sınıfın <b>alt sınırıdır</b>.'], [48, 'bu medyan sınıfının üst sınırı. L<sub>med</sub> sınıfın <b>alt sınırıdır</b>.'],
+    [36, 'bu bir önceki sınıfın alt sınırı. Medyan sınıfı 42-48.'], [46.2, 'bu sonucun kendisi; L<sub>med</sub> formüldeki başlangıç noktasıdır, medyan sınıfının alt sınırı.']], genel: 'L<sub>med</sub> medyan sınıfının (42-48) alt sınırıdır.' },
+  { alan: 'fl', anahtar: 'fl', ad: 'f<sub>l</sub>', dogru: 8, hatalar: [[18, 'bu medyan sınıfının <b>kendi</b> kümülatif frekansı. f<sub>l</sub>, medyan sınıfından <b>bir önceki</b> sınıfın (36-42) kümülatif frekansıdır.'],
+    [6, 'bu bir önceki sınıfın kendi frekansı. f<sub>l</sub> o sınıfın <b>kümülatif</b> frekansıdır: 2 + 6.'], [10, 'bu medyan sınıfının frekansı (f<sub>med</sub>). f<sub>l</sub> bir önceki sınıfın kümülatif frekansıdır.'],
+    [2, 'bu ilk sınıfın kümülatif frekansı. Medyan sınıfından hemen önceki sınıf 36-42.']], genel: 'f<sub>l</sub>, medyan sınıfından bir önceki sınıfın (36-42) kümülatif frekansıdır: medyan sınıfına gelene kadar geçen gün sayısı.' },
+  { alan: 'fmed', anahtar: 'fmed', ad: 'f<sub>med</sub>', dogru: 10, hatalar: [[18, 'bu medyan sınıfının kümülatif frekansı. f<sub>med</sub> sınıfın <b>kendi</b> frekansıdır (sınıftaki gün sayısı).'],
+    [8, 'bu bir önceki sınıfın kümülatif frekansı (f<sub>l</sub>). f<sub>med</sub> medyan sınıfının kendi frekansıdır.'], [15, 'bu medyanın sırası (Σfᵢ/2). f<sub>med</sub> medyan sınıfındaki gün sayısıdır.'],
+    [7, 'bu bir sonraki sınıfın (48-54) frekansı. f<sub>med</sub> medyan sınıfının (42-48) frekansıdır.'], [6, 'bu bir önceki sınıfın frekansı. f<sub>med</sub> medyan sınıfının (42-48) frekansıdır.']], genel: 'f<sub>med</sub> medyan sınıfındaki gün sayısıdır (fᵢ satırı).' },
+  { alan: 'i', anahtar: 'i', ad: 'i', dogru: 6, hatalar: [[5, 'sınıf aralığı üst sınır eksi alt sınırdır: 48 − 42.'], [42, 'i bir sınır değil, sınıfın <b>genişliğidir</b>: üst sınır − alt sınır.'], [48, 'i bir sınır değil, sınıfın <b>genişliğidir</b>: üst sınır − alt sınır.'],
+    [36, 'bu bütün sınıfların yayıldığı aralık (66 − 30). i yalnız medyan sınıfının genişliğidir.'], [3, 'bu sınıf genişliğinin yarısı. i sınıfın bütün genişliğidir.']], genel: 'i medyan sınıfının sınıf aralığıdır (genişliği): üst sınır − alt sınır.' }],
+  tamam: 'Hepsi doğru. <b>L<sub>med</sub> = 42</b> (medyan sınıfının alt sınırı); <b>f<sub>l</sub> = 8</b> (bir önceki sınıfın, 36-42\'nin kümülatif frekansı: medyan sınıfına gelene kadar 8 gün geçti); <b>f<sub>med</sub> = 10</b> (medyan sınıfındaki gün sayısı); <b>i = 48 − 42 = 6</b> kg.' });
+$('md-p').oninput = mdGrafik;
+addEventListener('resize', () => { if (MD.a === 4) mdGrafik(); });
+
 // ---------- 10: kartiller ----------
 function kvCiz(n) {
   const d = VIZE.slice(0, n), [q1, q2, q3] = kartil(d);
@@ -868,6 +1330,82 @@ function kvCiz(n) {
 }
 $('kv-sec').querySelectorAll('button').forEach(b => b.onclick = () => { $('kv-sec').querySelectorAll('button').forEach(x => x.classList.toggle('active', x === b)); kvCiz(+b.dataset.n); });
 kvCiz(10);
+
+// ---------- 10: kartiller, sınıflanmış seri (adım adım kalıp; medyanın MD_KUM ve mdSira'sını okur) ----------
+// Kurgu: sıralar Σfᵢ/4 ve 3Σfᵢ/4 → kümülatif frekansla Q1, Q3 sınıfları → iki formülün değerleri → neden (aynı kümülatif
+// çizgi, iki sıra, ortadaki %50) → formüller renkli ve sayılarla → yorum. Sayılar sunumla aynı: 41,5 ve ≈ 51,9 kg.
+function kaGrafik() {
+  const kap = $('ka-grafik'), W = Math.round(Math.max(320, Math.min(560, kap.clientWidth || 520))), H = 300, x0 = 46, x1 = W - 16, y0 = H - 40, y1 = 28;
+  const X = kg => x0 + (kg - 30) / 36 * (x1 - x0), Y = c => y0 - c / 30 * (y0 - y1);
+  const O = '#c97d0c', L = '#1E2D5E', nok = [[30, 0], ...SINIF.map(([, b], k) => [b, MD_KUM[k]])];
+  const t = svgYazi;
+  const S1 = mdSira(7.5), S3 = mdSira(22.5);
+  let g = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Kümülatif frekans çizgisi, birinci ve üçüncü kartil">`;
+  for (let c = 0; c <= 30; c += 5) g += `<line x1="${x0}" x2="${x1}" y1="${Y(c)}" y2="${Y(c)}" stroke="#eef1f5"/>` + (c ? t(x0 - 6, Y(c) + 4, c, '#64748B', 'end', '', 0) : '');
+  SINIF.forEach(([s]) => g += t(X(s), y0 + 16, s, '#64748B', 'middle', '', 0)); g += t(X(66), y0 + 16, 66, '#64748B', 'middle', '', 0);
+  g += t((x0 + x1) / 2, H - 4, 'Günlük et (kg)', '#64748B', 'middle', '', 0) + t(12, (y0 + y1) / 2, 'Kümülatif gün', '#64748B', 'middle', `transform="rotate(-90 12 ${(y0 + y1) / 2})"`, -1);
+  // ortadaki %50: Q1 ile Q3 arası bant
+  g += `<rect x="${X(S1.deger)}" y="${y1}" width="${X(S3.deger) - X(S1.deger)}" height="${y0 - y1}" fill="#E8F1FB"/>` + t((X(S1.deger) + X(S3.deger)) / 2, y1 + 14, 'ortadaki %50 (15 gün)', '#378ADD', 'middle', 'font-weight="700"', 2);
+  g += `<line x1="${x0}" x2="${x1}" y1="${y0}" y2="${y0}" stroke="#94A3B8"/><line x1="${x0}" x2="${x0}" y1="${y0}" y2="${y1}" stroke="#94A3B8"/>`;
+  [S1, S3].forEach(S => { const [a, b] = SINIF[S.k];
+    g += `<rect x="${X(a)}" y="${Y(S.fl + S.f)}" width="${X(b) - X(a)}" height="${Y(S.fl) - Y(S.fl + S.f)}" fill="#E6F7F0" fill-opacity=".7" stroke="#1D9E75" stroke-dasharray="4 3"/>`; });
+  g += `<polyline points="${nok.map(([kg, c]) => `${X(kg)},${Y(c)}`).join(' ')}" fill="none" stroke="#94A3B8" stroke-width="2"/>`;
+  [S1, S3].forEach(S => { const [a, b] = SINIF[S.k]; g += `<line x1="${X(a)}" y1="${Y(S.fl)}" x2="${X(b)}" y2="${Y(S.fl + S.f)}" stroke="#1D9E75" stroke-width="4"/>`; });
+  nok.forEach(([kg, c]) => g += `<circle cx="${X(kg)}" cy="${Y(c)}" r="3.5" fill="#1E2D5E"/>`);
+  // medyan (Q2) köprüsü: soluk
+  const M = mdSira(15); g += `<line x1="${x0}" x2="${X(M.deger)}" y1="${Y(15)}" y2="${Y(15)}" stroke="#b8c2cf" stroke-dasharray="3 3"/><line x1="${X(M.deger)}" x2="${X(M.deger)}" y1="${Y(15)}" y2="${y0}" stroke="#b8c2cf" stroke-dasharray="3 3"/>` + t(x0 + 4, Y(15) - 5, 'Q₂ = medyan, sıra 15', '#94A3B8', 'start');
+  [[S1, 7.5, 'Q₁'], [S3, 22.5, 'Q₃']].forEach(([S, p, ad]) => {
+    g += `<line x1="${x0}" x2="${X(S.deger)}" y1="${Y(p)}" y2="${Y(p)}" stroke="${O}" stroke-width="2" stroke-dasharray="6 4"/>`;
+    g += `<line x1="${X(S.deger)}" x2="${X(S.deger)}" y1="${Y(p)}" y2="${y0}" stroke="${L}" stroke-width="2" stroke-dasharray="6 4"/><circle cx="${X(S.deger)}" cy="${Y(p)}" r="5.5" fill="${O}"/>`;
+    g += t(x0 + 4, Y(p) - 6, `sıra ${trk(p, 1)}`, O, 'start', 'font-weight="700"', 1) + t(X(S.deger), y0 - 6, `${ad} = ${tr(S.deger, 1)}`, L, ad === 'Q₁' ? 'end' : 'start', `font-weight="700" dx="${ad === 'Q₁' ? -4 : 4}"`, 1); });
+  kap.innerHTML = g + '</svg>'; etiketYerlestir(kap.querySelector('svg'));
+}
+const KA = adimKur($('ka-kap'), {
+  adlar: ['Kaçıncı gün?', 'Q₁ ve Q₃ sınıfı', 'Panoyu doldur', 'Neden bu formül?', 'Hesap', 'Yorum'],
+  pano: { s1: '7,5', c1: '36-42', L1: '36', fl1: '2', f1: '6', i1: '6', q1: '41,5', s3: '22,5', c3: '48-54', L3: '48', fl3: '18', f3: '7', i3: '6', q3: '51,9' },
+  degisti: (a, A) => { document.querySelectorAll('#ka-tablo [data-k="1"]').forEach(c => c.classList.toggle('hl', a >= 3 || A.acik.has('c1')));
+    document.querySelectorAll('#ka-tablo [data-k="3"]').forEach(c => c.classList.toggle('hl', a >= 3 || A.acik.has('c3')));
+    if (a === 4) kaGrafik(); } });
+adimSor(KA, $('ka-s1'), { adim: 1, alanlar: [
+  { alan: 's1', anahtar: 's1', ad: 'Σfᵢ/4', dogru: 7.5, hatalar: [[15, 'bu Σfᵢ/2, medyanın (Q₂) sırası. Q₁ dörtte birdir: Σfᵢ/4.'], [7.75, '(n + 1)/4 basit seride, tek hacimde kullanılır. Sınıflanmış seride sıra Σfᵢ/4\'tür.'],
+    [8, 'sırayı yuvarladınız. Sınıflanmış seride sıra kesirli kalır: 30/4 = 7,5.'], [7, 'sırayı yuvarladınız. Sınıflanmış seride sıra kesirli kalır: 30/4 = 7,5.'], [22.5, 'bu 3Σfᵢ/4, Q₃\'ün sırası. Q₁ dörtte birdir.'], [30, 'bu toplam gün sayısı. Q₁ için dörde bölün.']], genel: 'gün sayısını (Σfᵢ = 30) dörde bölün.' },
+  { alan: 's3', anahtar: 's3', ad: '3Σfᵢ/4', dogru: 22.5, hatalar: [[23.25, '3(n + 1)/4 basit seride, tek hacimde kullanılır. Sınıflanmış seride sıra 3Σfᵢ/4\'tür.'], [90, 'bu 3n; dörde bölmeyi unuttunuz: 3 · 30 / 4.'],
+    [23, 'sırayı yuvarladınız. Sınıflanmış seride sıra kesirli kalır: 22,5.'], [22, 'sırayı yuvarladınız. Sınıflanmış seride sıra kesirli kalır: 22,5.'], [15, 'bu Σfᵢ/2, medyanın sırası. Q₃ dörtte üçtür: 3Σfᵢ/4.'],
+    [7.5, 'bu Σfᵢ/4, Q₁\'in sırası. Q₃ dörtte üçtür: 3 ile çarpın.'], [10, '30\'u 3\'e böldünüz. Q₃ için 30\'u 3 ile çarpıp 4\'e bölün.']], genel: 'gün sayısını (30) 3 ile çarpıp 4\'e bölün.' }],
+  tamam: 'Doğru: Σfᵢ/4 = 30/4 = <b>7,5</b>; 3Σfᵢ/4 = 90/4 = <b>22,5</b>. Medyanın sırası 15 bu ikisinin tam ortasında.' });
+const kaSec = (no, dogru, mesajlar, tamam) => adimSec(KA, $(`ka-s2${no === 1 ? 'a' : 'b'}`), { adim: 2, dogru, anahtar: 'c' + no, gb: $(`ka-s2${no === 1 ? 'a' : 'b'}-gb`), mesajlar, tamam,
+  sonra: () => document.querySelectorAll(`#ka-tablo [data-k="${dogru}"]`).forEach(c => c.classList.add('hl')) });
+kaSec(1, '1', { 0: 'Bu sınıfın kümülatif frekansı 2: 7,5. gün henüz gelmedi (2 &lt; 7,5).',
+  2: 'Bu sınıfın kümülatif frekansı 18. Ama 7,5. gün bundan önce geçildi: bir önceki sınıfta kümülatif 8\'e çıkıyor (7,5 ≤ 8). 42-48 medyan sınıfıdır.',
+  3: 'Bu sınıf Q₃\'ün sınıfı (kümülatif 25). 7,5. gün çok önce, kümülatif 8\'e çıkan sınıfta geçildi.', 4: 'Bu sınıf üst uçta (kümülatif 29). Q₁ sınıfı, kümülatif frekansın 7,5\'e ilk ulaştığı sınıftır.', 5: 'Bu son sınıf (kümülatif 30). Q₁ sınıfı, kümülatif frekansın 7,5\'e ilk ulaştığı sınıftır.' },
+  'Doğru: <b>36-42</b>. Kümülatif frekans bu sınıfta 2\'den 8\'e çıkıyor: <b>2 &lt; 7,5 ≤ 8</b>.');
+kaSec(3, '3', { 0: 'Bu ilk sınıf (kümülatif 2). Q₃ sınıfı, kümülatif frekansın 22,5\'e ilk ulaştığı sınıftır.', 1: 'Bu Q₁\'in sınıfı (kümülatif 8). Q₃ için kümülatif frekansın 22,5\'e ulaştığı sınıfa bakın.',
+  2: 'Bu sınıfın kümülatif frekansı 18: 22,5. gün henüz gelmedi (18 &lt; 22,5). 42-48 medyan sınıfıdır.', 4: 'Bu sınıfın kümülatif frekansı 29. Ama 22,5. gün bundan önce geçildi: bir önceki sınıfta kümülatif 25\'e çıkıyor (22,5 ≤ 25).',
+  5: 'Bu son sınıf (kümülatif 30). Q₃ sınıfı, kümülatif frekansın 22,5\'e ilk ulaştığı sınıftır.' },
+  'Doğru: <b>48-54</b>. Kümülatif frekans bu sınıfta 18\'den 25\'e çıkıyor: <b>18 &lt; 22,5 ≤ 25</b>.');
+const kaI = [[5, 'sınıf aralığı üst sınır eksi alt sınırdır; sınıflar 6 kg genişliğinde.'], [3, 'bu sınıf genişliğinin yarısı. i sınıfın bütün genişliğidir.']];
+adimSor(KA, $('ka-s3a'), { adim: 3, alanlar: [
+  { alan: 'L1', anahtar: 'L1', ad: 'L<sub>Q₁</sub>', dogru: 36, hatalar: [[39, 'bu Q₁ sınıfının orta noktası. L<sub>Q₁</sub> sınıfın <b>alt sınırıdır</b>.'], [42, 'bu Q₁ sınıfının üst sınırı. L<sub>Q₁</sub> sınıfın <b>alt sınırıdır</b>.'], [30, 'bu bir önceki sınıfın alt sınırı. Q₁ sınıfı 36-42.'], [48, 'bu Q₃ sınıfının alt sınırı. Q₁ sınıfı 36-42.']], genel: 'L<sub>Q₁</sub> Q₁ sınıfının (36-42) alt sınırıdır.' },
+  { alan: 'fl1', anahtar: 'fl1', ad: 'f<sub>l</sub>', dogru: 2, hatalar: [[8, 'bu Q₁ sınıfının <b>kendi</b> kümülatif frekansı. f<sub>l</sub> bir önceki sınıfın (30-36) kümülatif frekansıdır.'], [6, 'bu Q₁ sınıfının frekansı (f<sub>Q₁</sub>). f<sub>l</sub> bir önceki sınıfın kümülatif frekansıdır.'],
+    [18, 'bu Q₃\'ün f<sub>l</sub>\'si (48-54\'ten önceki sınıfın kümülatifi). Q₁ için 36-42\'den önceki sınıfa bakın.'], [0, 'Q₁ sınıfından önce bir sınıf var (30-36, 2 gün).']], genel: 'f<sub>l</sub>, Q₁ sınıfından bir önceki sınıfın (30-36) kümülatif frekansıdır.' },
+  { alan: 'f1', anahtar: 'f1', ad: 'f<sub>Q₁</sub>', dogru: 6, hatalar: [[8, 'bu Q₁ sınıfının kümülatif frekansı. f<sub>Q₁</sub> sınıfın <b>kendi</b> frekansıdır.'], [2, 'bu f<sub>l</sub> (önceki sınıfın kümülatifi). f<sub>Q₁</sub> Q₁ sınıfının kendi frekansıdır.'],
+    [7.5, 'bu Q₁\'in sırası. f<sub>Q₁</sub> Q₁ sınıfındaki gün sayısıdır.'], [10, 'bu medyan sınıfının frekansı. Q₁ sınıfı 36-42.'], [7, 'bu Q₃ sınıfının frekansı. Q₁ sınıfı 36-42.']], genel: 'f<sub>Q₁</sub> Q₁ sınıfındaki (36-42) gün sayısıdır.' },
+  { alan: 'i1', anahtar: 'i1', ad: 'i', dogru: 6, hatalar: [...kaI, [36, 'bu Q₁ sınıfının alt sınırı (ya da bütün aralık, 66 − 30). i sınıfın genişliğidir: 42 − 36.'], [42, 'i bir sınır değil, sınıfın genişliğidir: 42 − 36.']], genel: 'i Q₁ sınıfının genişliğidir: 42 − 36.' }],
+  tamam: 'Q₁ için hepsi doğru. <b>L<sub>Q₁</sub> = 36</b>; <b>f<sub>l</sub> = 2</b> (30-36 sınıfının kümülatifi); <b>f<sub>Q₁</sub> = 6</b>; <b>i = 42 − 36 = 6</b> kg.' });
+adimSor(KA, $('ka-s3b'), { adim: 3, alanlar: [
+  { alan: 'L3', anahtar: 'L3', ad: 'L<sub>Q₃</sub>', dogru: 48, hatalar: [[51, 'bu Q₃ sınıfının orta noktası. L<sub>Q₃</sub> sınıfın <b>alt sınırıdır</b>.'], [54, 'bu Q₃ sınıfının üst sınırı. L<sub>Q₃</sub> sınıfın <b>alt sınırıdır</b>.'], [42, 'bu bir önceki sınıfın (medyan sınıfının) alt sınırı. Q₃ sınıfı 48-54.'], [36, 'bu Q₁ sınıfının alt sınırı. Q₃ sınıfı 48-54.']], genel: 'L<sub>Q₃</sub> Q₃ sınıfının (48-54) alt sınırıdır.' },
+  { alan: 'fl3', anahtar: 'fl3', ad: 'f<sub>l</sub>', dogru: 18, hatalar: [[25, 'bu Q₃ sınıfının <b>kendi</b> kümülatif frekansı. f<sub>l</sub> bir önceki sınıfın (42-48) kümülatif frekansıdır.'], [10, 'bu bir önceki sınıfın kendi frekansı. f<sub>l</sub> o sınıfın <b>kümülatif</b> frekansıdır: 8 + 10.'],
+    [2, 'bu Q₁\'in f<sub>l</sub>\'si. Q₃ için 48-54\'ten önceki sınıfın (42-48) kümülatifine bakın.'], [8, 'bu Q₁ sınıfının kümülatifi. Q₃ için 48-54\'ten önceki sınıfın (42-48) kümülatifine bakın.'], [7, 'bu Q₃ sınıfının frekansı (f<sub>Q₃</sub>). f<sub>l</sub> bir önceki sınıfın kümülatif frekansıdır.']], genel: 'f<sub>l</sub>, Q₃ sınıfından bir önceki sınıfın (42-48) kümülatif frekansıdır.' },
+  { alan: 'f3', anahtar: 'f3', ad: 'f<sub>Q₃</sub>', dogru: 7, hatalar: [[25, 'bu Q₃ sınıfının kümülatif frekansı. f<sub>Q₃</sub> sınıfın <b>kendi</b> frekansıdır.'], [18, 'bu f<sub>l</sub> (önceki sınıfın kümülatifi). f<sub>Q₃</sub> Q₃ sınıfının kendi frekansıdır.'],
+    [22.5, 'bu Q₃\'ün sırası. f<sub>Q₃</sub> Q₃ sınıfındaki gün sayısıdır.'], [10, 'bu bir önceki sınıfın (medyan sınıfının) frekansı. Q₃ sınıfı 48-54.'], [6, 'bu Q₁ sınıfının frekansı. Q₃ sınıfı 48-54.']], genel: 'f<sub>Q₃</sub> Q₃ sınıfındaki (48-54) gün sayısıdır.' },
+  { alan: 'i3', anahtar: 'i3', ad: 'i', dogru: 6, hatalar: [...kaI, [48, 'i bir sınır değil, sınıfın genişliğidir: 54 − 48.'], [54, 'i bir sınır değil, sınıfın genişliğidir: 54 − 48.'], [36, 'bu bütün sınıfların yayıldığı aralık (66 − 30). i yalnız Q₃ sınıfının genişliğidir.']], genel: 'i Q₃ sınıfının genişliğidir: 54 − 48.' }],
+  tamam: 'Q₃ için hepsi doğru. <b>L<sub>Q₃</sub> = 48</b>; <b>f<sub>l</sub> = 18</b> (42-48 sınıfının kümülatifi); <b>f<sub>Q₃</sub> = 7</b>; <b>i = 54 − 48 = 6</b> kg.' });
+addEventListener('resize', () => { if (KA.a === 4) kaGrafik(); });
+// Sunum açılıp kapanınca 4. adımdaki SVG'ler yeni genişlik ve yazı boyuyla yeniden çizilir.
+const svgYenile = () => setTimeout(() => { if (MD.a === 4) mdGrafik(); if (KA.a === 4) kaGrafik(); if (MO.a === 4) moBol(+$('mk-sa').value, +$('mk-sb').value);
+  ['md-kap', 'ka-kap', 'mo-kap'].forEach(id => adimSigdir($(id))); }, 60);
+['sunum-ac', 'sb-cik'].forEach(id => $(id).addEventListener('click', svgYenile));
+document.addEventListener('keydown', e => { if (e.key === 'Escape') svgYenile(); });
 
 // ---------- 11: alıştırma ve hesaplayıcı ----------
 const QZ = [
@@ -948,13 +1486,14 @@ function yzCiz() {
     if (inp.value.trim() === '') { inp.className = 'fin'; s.textContent = ''; return; }
     const v = sayi(inp.value), ok = Math.abs(v - dogru) < 0.06; inp.className = 'fin ' + (ok ? 'ok' : 'no'); s.textContent = ok ? '✓' : '✗';
     if (!ok) { const h = Object.entries(hatalar).find(([x]) => Math.abs(v - +x) < 0.06); msj.push((h ? h[1] : 'Bu değer doğru değil; formülün adımlarını kontrol edin.')); } });
-  $('yz-acik').innerHTML = msj.length ? msj.map(m => '• ' + m).join('<br>') : 'Girilen sonuçlar doğru ya da henüz sonuç girilmedi. Doğru değerleri görmek için 5, 8 ve 9. bölümlerdeki çözümleri açın.';
+  $('yz-acik').innerHTML = msj.length ? msj.map(m => '• ' + m).join('<br>') : 'Girilen sonuçlar doğru ya da henüz sonuç girilmedi. Doğru değerleri görmek için 5. bölümdeki çözümü ve 8., 9. ve 10. bölümlerdeki adımları açın.';
 }
 ['ort', 'mod', 'med'].forEach(k => $('yz-' + k).oninput = yzCiz); yzCiz();
 
 // ---------- sunum modu ----------
 // Her bölüm, ekran yüksekliğine göre ölçülüp birkaç slayda bölünür.
 // Başlık (h4) ve düğme satırı (.controls) ardındaki içerikten ayrılmaz.
+// Adım kalıbının kabı (data-adimli) bölünmez: tek birim olarak kendi slaytında durur; sığmazsa sigdir() küçültür.
 const BOLUMLER = [document.querySelector('.hero'), ...document.querySelectorAll('.section')];
 const KISIM = BOLUMLER.map(el => { let p = el.previousElementSibling; while (p && !p.classList.contains('part-title')) { if (p.classList.contains('hero')) return ''; p = p.previousElementSibling; } return p ? p.textContent : ''; });
 const BASLIK = BOLUMLER.map((el, i) => i === 0 ? 'Kapak' : el.querySelector('.section-header').innerText.replace(/^\S+\s*/, ''));
@@ -966,6 +1505,7 @@ function parcala() {
   SLAYT = [{ b: 0, parca: null, k: 1, n: 1 }];
   BOLUMLER.slice(1).forEach((sec, i) => {
     const body = sec.querySelector('.section-body'), kids = [...body.children];
+    Object.assign(body.style, { transform: '', transformOrigin: '', width: '', marginBottom: '' });
     const zorla = [...sec.querySelectorAll('[data-olc]')].map(e => [e, e.style.display]);
     zorla.forEach(([e]) => e.style.display = '');
     kids.forEach(c => c.classList.remove('gizli-p'));
@@ -977,11 +1517,12 @@ function parcala() {
     zorla.forEach(([e, d]) => e.style.display = d);
     const birim = []; let cur = null;
     kids.forEach((c, j) => { if (!cur) cur = { el: [], h: 0 }; cur.el.push(c); cur.h += yuk[j]; if (!bitisik(c) || j === kids.length - 1) { birim.push(cur); cur = null; } });
+    birim.forEach(u => u.ay = u.el.some(e => e.matches('[data-adimli]') || e.querySelector('[data-adimli]')));
     const dagit = L => { const out = []; let p = null;
-      birim.forEach(u => { if (p && p.h + u.h > L) { out.push(p); p = null; } if (!p) p = { el: [], h: 0 }; p.el.push(...u.el); p.h += u.h; });
+      birim.forEach(u => { if (p && (p.h + u.h > L || u.ay || p.ay)) { out.push(p); p = null; } if (!p) p = { el: [], h: 0, ay: false }; p.el.push(...u.el); p.h += u.h; p.ay = p.ay || u.ay; });
       if (p) out.push(p); return out; };
-    // Slayt sayısını artırmadan içeriği dengeli dağıt: sonda küçük artık kalmasın.
-    const n = dagit(bos).length; let lo = Math.max(...birim.map(u => u.h)), hi = Math.max(bos, lo);
+    // Slayt sayısını artırmadan içeriği dengeli dağıt: sonda küçük artık kalmasın. Adımlı kap zaten tek başına durur, ölçüye girmez.
+    const n = dagit(bos).length; let lo = Math.max(1, ...birim.filter(u => !u.ay).map(u => u.h)), hi = Math.max(bos, lo);
     for (let t = 0; t < 25; t++) { const m = (lo + hi) / 2; if (dagit(m).length <= n) hi = m; else lo = m; }
     const parcalar = dagit(hi);
     parcalar.forEach((pp, k) => SLAYT.push({ b: i + 1, parca: pp.el, k: k + 1, n: parcalar.length }));
@@ -992,20 +1533,41 @@ function slaytGoster(i, yon) {
   const S = SLAYT[si], el = BOLUMLER[S.b];
   BOLUMLER.forEach(x => x.classList.remove('slide-on', 'ileri', 'geri'));
   if (S.parca) {
-    el.querySelectorAll('.section-body > *').forEach(c => c.classList.toggle('gizli-p', !S.parca.includes(c)));
+    // Slaytın ilk öğesinin üst boşluğu ölçüde yoktu (parcala boşluğu bir önceki öğeye sayar): sunumda sıfırlanır.
+    el.querySelectorAll('.section-body > *').forEach(c => { c.classList.toggle('gizli-p', !S.parca.includes(c)); c.classList.toggle('ilk-p', c === S.parca[0]); });
     el.querySelector('.parca-no').textContent = S.n > 1 ? `(${S.k}/${S.n})` : '';
   }
   void el.offsetWidth; el.classList.add('slide-on', yon < 0 ? 'geri' : 'ileri'); el.scrollTop = 0;
+  if (document.activeElement && document.activeElement !== document.body && !document.activeElement.closest('#sunum-bar')) document.activeElement.blur();
+  sigdir(el);
   $('sb-bilgi').textContent = `${si + 1} / ${SLAYT.length}  ·  ${KISIM[S.b] ? KISIM[S.b] + '  ·  ' : ''}${BASLIK[S.b]}`;
   $('sb-ilerleme').style.width = (100 * (si + 1) / SLAYT.length) + '%';
   $('sb-geri').disabled = si === 0; $('sb-ileri').disabled = si === SLAYT.length - 1;
   requestAnimationFrame(() => el.querySelectorAll('canvas').forEach(c => { const ch = Chart.getChart(c); if (ch) ch.resize(); }));
+}
+// Adım kalıbı slayta sığmıyorsa bölümün gövdesini küçültür (PowerPoint'teki "taşarsa sığdır" gibi). Yalnız görünen
+// bir adımlı kap (data-adimli) varsa çalışır; öteki slaytlar parcala() ile zaten sığar ve dokunulmaz.
+// CSS zoom değil transform (zoom Chart.js tıklamalarını bozar). Genişlik 1/f açılınca içerik yayılır ve kısalır;
+// sığan en büyük f ikili aramayla bulunur, alt sınır 0.8 (0.8'de de sığmazsa slayt kayar; içerik kısaltılmalı).
+const SIG_ALT = 0.8;
+function sigdir(el) {
+  const g = el && el.querySelector('.section-body'); if (!g) return;
+  Object.assign(g.style, { transform: '', transformOrigin: '', width: '', marginBottom: '' }); el.dataset.olcek = '1';
+  if (!document.body.classList.contains('sunum') || ![...el.querySelectorAll('[data-adimli]')].some(x => !x.closest('.gizli-p'))) return;
+  const alan = el.clientHeight - g.offsetTop - 4; if (g.offsetHeight <= alan) return;
+  const sigar = f => { g.style.width = (100 / f) + '%'; return g.offsetHeight * f <= alan; };
+  let lo = SIG_ALT, hi = 1;
+  for (let k = 0; k < 10; k++) { const mid = (lo + hi) / 2; if (sigar(mid)) lo = mid; else hi = mid; }
+  const f = lo; g.style.width = (100 / f) + '%';
+  Object.assign(g.style, { transformOrigin: 'top left', transform: `scale(${f.toFixed(3)})`, marginBottom: -(g.offsetHeight * (1 - f)) + 'px' });
+  el.dataset.olcek = f.toFixed(3);
 }
 function sunumAc() { document.body.classList.add('sunum'); parcala(); slaytGoster(SLAYT.findIndex(x => x.b === sonGorunen), 1); }
 function sunumKapat() {
   document.body.classList.remove('sunum');
   BOLUMLER.forEach(el => el.classList.remove('slide-on', 'ileri', 'geri'));
   document.querySelectorAll('.gizli-p').forEach(c => c.classList.remove('gizli-p'));
+  document.querySelectorAll('.section-body').forEach(g => Object.assign(g.style, { transform: '', transformOrigin: '', width: '', marginBottom: '' }));
   document.querySelectorAll('.parca-no').forEach(x => x.textContent = '');
   if (document.fullscreenElement) document.exitFullscreen();
   BOLUMLER[SLAYT[si].b].scrollIntoView(); Object.values(charts).forEach(c => c.resize());
@@ -1018,13 +1580,22 @@ window.addEventListener('resize', () => {
     const j = SLAYT.findIndex(x => x.b === S.b && S.parca && x.parca && x.parca.includes(S.parca[0])); slaytGoster(j >= 0 ? j : SLAYT.findIndex(x => x.b === S.b), 1); }, 250);
 });
 $('sunum-ac').onclick = sunumAc; $('sb-cik').onclick = sunumKapat;
-$('sb-ileri').onclick = () => slaytGoster(si + 1, 1); $('sb-geri').onclick = () => slaytGoster(si - 1, -1);
+// Görünen slaytta adım adım ilerleyen bir kap varsa (ADIMLI kaydı), ok tuşları ve › ‹ düğmeleri önce adımları gezer,
+// son adımdan sonra slayta geçer. Kayıt adimKur() ile eklenir.
+function adimla(yon) {
+  const kayit = window.ADIMLI || []; if (!SLAYT.length) return false;
+  const el = BOLUMLER[SLAYT[si].b], a = kayit.find(x => x.el && el.contains(x.el) && !x.el.closest('.gizli-p'));
+  return a ? a[yon]() : false;
+}
+$('sb-ileri').onclick = () => { if (!adimla('ileri')) slaytGoster(si + 1, 1); }; $('sb-geri').onclick = () => { if (!adimla('geri')) slaytGoster(si - 1, -1); };
 $('sb-tam').onclick = () => document.fullscreenElement ? document.exitFullscreen() : document.documentElement.requestFullscreen();
 document.addEventListener('keydown', e => {
   if (!document.body.classList.contains('sunum')) return;
-  const t = e.target.tagName; if (t === 'INPUT' || t === 'SELECT' || t === 'TEXTAREA') return;
-  if (['ArrowRight', 'PageDown'].includes(e.key)) { e.preventDefault(); slaytGoster(si + 1, 1); }
-  else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); slaytGoster(si - 1, -1); }
+  // PageDown/PageUp (kumanda) her zaman gezinir; oklar kaydırıcı üzerinde de gezinir, yalnız metin kutusunda yazım için kalır.
+  const t = e.target, tag = t.tagName, kumanda = e.key === 'PageDown' || e.key === 'PageUp';
+  if (!kumanda && (tag === 'SELECT' || tag === 'TEXTAREA' || (tag === 'INPUT' && t.type !== 'range'))) return;
+  if (['ArrowRight', 'PageDown'].includes(e.key)) { e.preventDefault(); if (!adimla('ileri')) slaytGoster(si + 1, 1); }
+  else if (['ArrowLeft', 'PageUp'].includes(e.key)) { e.preventDefault(); if (!adimla('geri')) slaytGoster(si - 1, -1); }
   else if (e.key === 'Home') slaytGoster(0, -1);
   else if (e.key === 'End') slaytGoster(SLAYT.length - 1, 1);
   else if (e.key === 'Escape' && !document.fullscreenElement) sunumKapat();
@@ -1032,6 +1603,92 @@ document.addEventListener('keydown', e => {
 });
 const gorunenObs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting && !document.body.classList.contains('sunum')) sonGorunen = BOLUMLER.indexOf(e.target); }), { rootMargin: '-30% 0px -60% 0px' });
 BOLUMLER.forEach(el => gorunenObs.observe(el));
+
+// ---------- adım kalıbı (ortak; 2. bölüm de kullanır) ----------
+// Yapı: data-adimli taşıyan .ad-kutu kabı; içinde
+//   .ad-pano ve .ad-hucre kutuları (data-anahtar, data-adim, isteğe bağlı data-sor; içinde ad, değer, "n. adım"; renk --r ile),
+//   boş .ad-adimlar (adım düğmeleri buraya yazılır), data-adim taşıyan .ad-adim blokları (data-adim 4,5 gibi liste de olur),
+//   .ad-gez içinde .ad-geri ve .ad-ileri düğmeleri.
+// adimKur(kap, { adlar: [...], pano: { anahtar: 'değer (HTML)' }, degisti: (a, A) => {} }) -> A { a, git, ac, kap }
+// data-sor taşıyan hücre öğrenci bulunca (A.ac) ya da sonraki adıma geçilince dolar; taşımayan kendi adımında dolar.
+// Bu fonksiyonlar bildirimdir (hoisting): sayfanın kendi kodu bu bloktan önce çalışsa da çağırabilir.
+function adimSigdir(kap) {
+  if (!document.body.classList.contains('sunum') || !SLAYT.length) return;
+  const el = BOLUMLER[SLAYT[si].b]; if (el && el.contains(kap)) sigdir(el);
+}
+function adimKur(kap, o) {
+  const A = { a: 1, n: o.adlar.length, acik: new Set(), kap, sorular: [] };
+  const bloklar = [...kap.querySelectorAll('.ad-adim')], cubuk = kap.querySelector('.ad-adimlar');
+  const geri = kap.querySelector('.ad-geri'), ileri = kap.querySelector('.ad-ileri');
+  A.panoYaz = () => kap.querySelectorAll('.ad-hucre').forEach(h => {
+    const k = h.dataset.anahtar, ad = +h.dataset.adim, dolu = h.hasAttribute('data-sor') ? (A.a > ad || A.acik.has(k)) : A.a >= ad;
+    const once = h.classList.contains('dolu'); h.classList.toggle('dolu', dolu); h.querySelector('b').innerHTML = dolu ? o.pano[k] : '?';
+    if (dolu && !once) { h.classList.remove('yanip'); void h.offsetWidth; h.classList.add('yanip'); } });
+  A.ac = (...k) => { k.forEach(x => A.acik.add(x)); A.panoYaz(); adimSigdir(kap); };
+  // Doğru cevap sonradan bozulursa panodaki değer geri alınır (adıma özgü vurgular da degisti ile yenilenir).
+  A.kapat = (...k) => { if (!k.some(x => A.acik.has(x))) return; k.forEach(x => A.acik.delete(x)); A.ciz(); };
+  A.ciz = () => {
+    // Geçilen adımların alıştırmaları kendiliğinden dolar (öğrenci geri dönerse cevabı görür).
+    A.sorular.forEach(s => { if (s.adim < A.a && !s.bitti()) s.doldur(); });
+    // Geçilmiş adımların kutuları salt okunur, düğmeleri pasif; o adıma dönülünce yeniden düzenlenebilir.
+    A.sorular.forEach(s => s.kilit(s.adim < A.a));
+    bloklar.forEach(b => b.classList.toggle('on', b.dataset.adim.split(',').map(Number).includes(A.a)));
+    kap.dataset.su = A.a;  // CSS'te adıma özgü görünüm için: .ad-kutu[data-su="3"] ...
+    if (cubuk) { cubuk.innerHTML = o.adlar.map((t, k) => `<button data-a="${k + 1}" class="${k + 1 === A.a ? 'active' : k + 1 < A.a ? 'gecti' : ''}">${k + 1}. ${t}</button>`).join('');
+      cubuk.querySelectorAll('button').forEach(b => b.onclick = () => A.git(+b.dataset.a)); }
+    if (geri) geri.disabled = A.a === 1; if (ileri) ileri.disabled = A.a === A.n;
+    A.panoYaz(); if (o.degisti) o.degisti(A.a, A); adimSigdir(kap);
+  };
+  A.git = k => { A.a = Math.max(1, Math.min(A.n, k)); const o = document.activeElement; if (o && kap.contains(o)) o.blur(); A.ciz(); };
+  if (geri) geri.onclick = () => A.git(A.a - 1); if (ileri) ileri.onclick = () => A.git(A.a + 1);
+  (window.ADIMLI = window.ADIMLI || []).push({ el: kap, ileri: () => A.a < A.n ? (A.git(A.a + 1), true) : false, geri: () => A.a > 1 ? (A.git(A.a - 1), true) : false });
+  A.ciz();
+  return A;
+}
+// Giriş kutulu alıştırma. kutu: .ad-giris (içinde data-alan taşıyan girişler, .ad-kontrol, .ad-goster, .ad-gb).
+// o = { adim, alanlar: [{ alan, anahtar?, dogru, tol? (kabul payı), yaz?, ad, hatalar: [[değer, 'mesaj'], ...], notr?: v => 'mesaj'|null, genel: 'mesaj' | v => 'mesaj' }], tamam: 'HTML', sonra? }
+// Kontrol et: her yanlış kutu için tanınan hatanın mesajı (yoksa genel mesaj); hepsi doğruysa tamam mesajı ve panodaki anahtarlar dolar.
+function adimSor(A, kutu, o) {
+  const gir = al => kutu.querySelector(`input[data-alan="${al.alan}"]`), gb = kutu.querySelector('.ad-gb');
+  // Yalnız sayı kabul edilir ("15 kg", "15abc" geçmez); ondalık virgül ya da nokta, eksi için - ya da −.
+  const temiz = v => String(v).trim().replace('−', '-'), sayiMi = v => /^-?\d+([.,]\d+)?$/.test(temiz(v));
+  const sayiOku = v => sayiMi(v) ? parseFloat(temiz(v).replace(',', '.')) : NaN, es = (x, y, t = 1e-6) => Math.abs(x - y) < t;
+  const yaz = (h, ok) => { gb.className = 'ad-gb ' + (ok ? 'ok' : 'no'); gb.innerHTML = h; adimSigdir(A.kap); };
+  let bitti = false;
+  const doldur = () => { bitti = true; o.alanlar.forEach(al => { const i = gir(al); i.value = al.yaz || String(al.dogru).replace('.', ','); i.className = 'ok'; });
+    A.ac(...o.alanlar.map(al => al.anahtar).filter(Boolean)); yaz(o.tamam, true); if (o.sonra) o.sonra(); };
+  kutu.querySelector('.ad-goster').onclick = doldur;
+  // Doğru cevaptan sonra bir kutu değiştirilirse yeniden Kontrol et istenir, panodaki değerler boşalır.
+  o.alanlar.forEach(al => gir(al).addEventListener('input', () => { if (!bitti) return; bitti = false; gir(al).className = '';
+    gb.className = 'ad-gb'; gb.innerHTML = ''; A.kapat(...o.alanlar.map(x => x.anahtar).filter(Boolean)); }));
+  kutu.querySelector('.ad-kontrol').onclick = () => {
+    const h = []; let bos = false, hepsiNotr = true;  // notr: kurala uyan ama bu örnekte kullanılmayan cevap (sarı, nötr)
+    o.alanlar.forEach(al => { const i = gir(al), v = sayiOku(i.value);
+      if (i.value.trim() === '') { bos = true; i.className = ''; return; }
+      if (!isFinite(v)) { i.className = 'no'; hepsiNotr = false; h.push(`<b>${al.ad} = ${i.value.trim()}</b>: yalnız sayı yazın (birim ya da harf olmadan; ondalık için virgül).`); return; }
+      if (es(v, al.dogru, al.tol)) { i.className = 'ok'; return; }
+      const t = (al.hatalar || []).find(([x]) => es(v, x, al.tol)), n = !t && al.notr ? al.notr(v) : null;
+      i.className = n ? 'uy' : 'no'; if (!n) hepsiNotr = false;
+      h.push(`<b>${al.ad} = ${i.value.trim()}</b>: ${t ? t[1] : n || (typeof al.genel === 'function' ? al.genel(v) : al.genel)}`); });
+    if (h.length) { yaz(h.join('<br>'), false); if (hepsiNotr) gb.className = 'ad-gb uy'; }
+    else if (bos) yaz('Bütün kutuları doldurun (ondalık için virgül kullanabilirsiniz).', false);
+    else doldur();
+  };
+  A.sorular.push({ adim: o.adim, bitti: () => bitti, doldur, kilit: on => { kutu.querySelectorAll('input').forEach(i => i.readOnly = on);
+    kutu.querySelectorAll('.ad-kontrol, .ad-goster').forEach(b => b.disabled = on); } });
+}
+// Seçmeli alıştırma: kutu içindeki .ad-sec düğmelerinden (data-sec) biri doğrudur.
+// o = { adim, dogru: 'değer', anahtar?, mesajlar: { değer: 'mesaj' }, varsayilan?: 'mesaj', tamam: 'HTML', gb: geri bildirim öğesi, sonra? }
+function adimSec(A, kutu, o) {
+  const dg = kutu.querySelectorAll('.ad-sec'); let bitti = false;
+  const yaz = (h, ok) => { o.gb.className = 'ad-gb ' + (ok ? 'ok' : 'no'); o.gb.innerHTML = h; adimSigdir(A.kap); };
+  const doldur = () => { bitti = true; dg.forEach(b => b.classList.toggle('ok', b.dataset.sec === o.dogru)); dg.forEach(b => b.classList.remove('no'));
+    if (o.anahtar) A.ac(o.anahtar); yaz(o.tamam, true); if (o.sonra) o.sonra(); };
+  dg.forEach(b => b.onclick = () => { if (b.dataset.sec === o.dogru) return doldur();
+    if (bitti) { bitti = false; if (o.anahtar) A.kapat(o.anahtar); }
+    dg.forEach(x => x.classList.remove('no', 'ok')); b.classList.add('no'); yaz(o.mesajlar[b.dataset.sec] || o.varsayilan || 'Bu seçenek doğru değil; yeniden bakın.', false); });
+  A.sorular.push({ adim: o.adim, bitti: () => bitti, doldur, kilit: on => dg.forEach(b => b.disabled = on) });
+}
 
 // ---------- menü vurgusu ----------
 const navA = [...document.querySelectorAll('#sidebar a')];
