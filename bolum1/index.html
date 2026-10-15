@@ -1106,13 +1106,13 @@ faCiz();
     tamam: `Doğru: R / k = ${tr(R, 2)} / 7 ≈ ${tr(R / 7, 2)}, yukarı yuvarlanınca <b>i = 7 kg</b>. 7 sınıf × 7 kg = 49 kg, aralığın tamamını kapsar.` });
   adimSor(A, $('fa-s4'), { adim: 4, sonra, alanlar: [{ alan: 'L0', anahtar: 'L0', ad: 'ilk alt sınır', dogru: 50, hatalar: [
       [AMIN, 'bu en küçük değerin kendisi. Sınırlar kolay okunsun diye en küçük değeri içine alan <b>yuvarlak</b> bir sayıdan başlanır.'],
-      [52, `52 de en küçük değeri (${tr(AMIN, 2)}) içine alır; ama bu tablo yuvarlak sayı 50'den başlıyor (sunumdaki tablo da öyle).`],
       [55, `en küçük değerin (${tr(AMIN, 2)}) üstünde: o değer hiçbir sınıfa girmez. İlk alt sınır en küçük değerden büyük olamaz.`],
       [60, `en küçük değerin (${tr(AMIN, 2)}) üstünde: o değer hiçbir sınıfa girmez. İlk alt sınır en küçük değerden büyük olamaz.`],
       [45, `en küçük değerden çok aşağıda: ilk sınıf boş kalır ve 7 sınıf 45 + 49 = 94'te biter, ${tr(AMAX, 2)} dışarıda kalır.`]],
       genel: v => v > AMIN ? `en küçük değerden (${tr(AMIN, 2)}) büyük olamaz: o değer hiçbir sınıfa girmez.`
         : v < AMAX - 49 ? `en büyük değer (${tr(AMAX, 2)}) dışarıda kalır: 7 sınıf ${tr(v, 2)} + 49 = ${tr(v + 49, 2)}'da biter.`
-        : 'olur (bütün değerler sınıflara girer), ama bu tablo yuvarlak sayı 50\'den başlıyor (sunumdaki tablo da öyle).', tol: 0.006 }],
+        : 'olur (bütün değerler sınıflara girer), ama bu tablo yuvarlak sayı 50\'den başlıyor (sunumdaki tablo da öyle).', tol: 0.006,
+      notr: v => v <= AMIN && v >= AMAX - 49 ? `olur (en küçük ${tr(AMIN, 2)} ve en büyük ${tr(AMAX, 2)} sınıflara girer), ama bu tablo yuvarlak sayı 50'den başlıyor (sunumdaki tablo da öyle).` : null }],
     tamam: `Doğru: <b>50</b>. Sınıflar 50-57'den az, 57-64'ten az, …, 92-99'dan az; ${tr(AMAX, 2)} son sınıfa girer.` });
   adimSec(A, $('fa-s4b'), { adim: 4, dogru: '64', anahtar: 'sinir', gb: $('fa-s4b-gb'), sonra,
     mesajlar: { 57: 'Üst sınır <b>hariçtir</b>: "57-64\'ten az" sınıfına 64\'ten küçük değerler girer. 64,00 bir sonraki sınıfın alt sınırıdır ve alt sınır dahildir.' },
