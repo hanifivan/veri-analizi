@@ -296,6 +296,19 @@
   body.sunum .ilk-p { margin-top: 0 !important; }
   body.sunum #s3 .chart-wrap, body.sunum #s9 .chart-wrap { height: min(360px, 34vh); }
   .parca-no { margin-left: auto; font-size: .75em; color: #a8c8d8; font-weight: 600; }
+  /* Dar telefon (320-430 px): ızgara sütunları, grafik kutuları ve kaydırıcılar içerikle genişlemesin. Bölüm kutusu taşanı gizlediği için
+     taşma sayfada kaydırma çubuğu açmıyor, içerik sağdan kesik görünüyordu. Uzun formül ve geniş tablo kendi kutusunda yana kayar. */
+  @media(max-width:700px) {
+    body:not(.sunum) .grid2, body:not(.sunum) .grid3, body:not(.sunum) .grid4 { grid-template-columns: minmax(0, 1fr); }
+    body:not(.sunum) .grid2 > *, body:not(.sunum) .grid3 > *, body:not(.sunum) .grid4 > *, body:not(.sunum) .section-body > *, body:not(.sunum) .card { min-width: 0; }
+    body:not(.sunum) .controls { flex-wrap: wrap; }
+    body:not(.sunum) .controls .kayd { white-space: normal; flex-wrap: wrap; max-width: 100%; }
+    body:not(.sunum) input[type=range] { width: auto; flex: 1 1 140px; min-width: 0; max-width: 100%; }
+    body:not(.sunum) .formula, body:not(.sunum) .eq { max-width: 100%; overflow-x: auto; }
+    body:not(.sunum) .section-body table:not(.table-scroll table) { display: block; max-width: 100%; overflow-x: auto; }
+    body:not(.sunum) .olcek-tablo td:last-child { min-width: 13em; } body:not(.sunum) .olcek-tablo th { padding: 6px 6px; }
+    body:not(.sunum) .pgrid { grid-template-columns: repeat(10, minmax(0, 1fr)); gap: 4px; } body:not(.sunum) .pdot { font-size: 10px; border-width: 2px; }
+  }
   @media print { #sunum-ac, #sunum-bar { display: none !important; } }
 
   /* 2. bölüme özgü */
